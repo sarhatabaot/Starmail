@@ -1,10 +1,11 @@
 package me.sword7.starmail.util;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import me.sword7.starmail.sys.Version;
 import me.sword7.starmail.user.User;
 import me.sword7.starmail.util.X.XMaterial;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Skull;
 import org.bukkit.inventory.ItemStack;
@@ -78,12 +79,16 @@ public class Head {
         ItemStack head = currentValue >= 113 ? new ItemStack(XMaterial.PLAYER_HEAD.parseMaterial()) : new ItemStack(XMaterial.PLAYER_HEAD.parseMaterial(), 1, (short) 3);
         SkullMeta skullMeta = (SkullMeta) head.getItemMeta();
         GameProfile profile = new GameProfile(playerID, playerName);
-        try {
-            Field profileField = skullMeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(skullMeta, profile);
-        } catch (IllegalArgumentException | SecurityException | NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
+        if (currentValue >= 117) {
+            skullMeta.setOwningPlayer(Bukkit.getServer().getOfflinePlayer(profile.getId()));
+        } else {
+            try {
+                Field profileField = skullMeta.getClass().getDeclaredField("profile");
+                profileField.setAccessible(true);
+                profileField.set(skullMeta, profile);
+            } catch (IllegalArgumentException | SecurityException | NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
         head.setItemMeta(skullMeta);
         return head;

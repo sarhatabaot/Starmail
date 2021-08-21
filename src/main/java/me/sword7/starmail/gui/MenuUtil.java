@@ -13,8 +13,7 @@ public class MenuUtil {
 
     public static Inventory createMenu(String title, Page page, XGlass theme) {
         int rows = page.getRows();
-        Inventory menu;
-        menu = createInventory(rows, title);
+        Inventory menu = createInventory(rows, title);
 
         //add border
         ItemStack themeItem = theme.getSwiggle();
@@ -51,10 +50,12 @@ public class MenuUtil {
     public static void playClickSound(Player player) {
         player.playSound(player.getLocation(), clickSound, 0.5f, 1.2f);
     }
+
     public static void playPickupSound(Player player) {
         player.playSound(player.getLocation(), pickUpSound, 0.5f, 1.2f);
     }
-    public static void playErrorSound(Player player){
+
+    public static void playErrorSound(Player player) {
         player.playSound(player.getLocation(), errorSound, 0.5f, 0.8f);
     }
 

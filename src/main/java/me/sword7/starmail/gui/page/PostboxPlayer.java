@@ -1,11 +1,11 @@
 package me.sword7.starmail.gui.page;
 
+import com.google.common.collect.ImmutableMap;
 import me.sword7.starmail.gui.MenuUtil;
 import me.sword7.starmail.gui.data.PostData;
 import me.sword7.starmail.gui.data.SessionData;
 import me.sword7.starmail.util.Key;
 import me.sword7.starmail.util.X.XGlass;
-import com.google.common.collect.ImmutableMap;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.Inventory;

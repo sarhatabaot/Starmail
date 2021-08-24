@@ -133,17 +133,18 @@ public class UserCache implements Listener {
     }
 
     public static void getUser(String userName, CallbackQuery<User> callback) {
-        if (nameToUser.containsKey(userName)) {
-            User user = nameToUser.get(userName);
+        String lookupName = userName.toUpperCase();
+        if (nameToUser.containsKey(lookupName)) {
+            User user = nameToUser.get(lookupName);
             callback.onQueryDone(user);
             if (!recent.remove(user.getID())) recentSize++;
             recent.add(user.getID());
-        } else if (savesLookup.containsKey(userName) && saves.containsKey(savesLookup.get(userName))) {
-            User user = saves.get(savesLookup.get(userName));
+        } else if (savesLookup.containsKey(lookupName) && saves.containsKey(savesLookup.get(lookupName))) {
+            User user = saves.get(savesLookup.get(lookupName));
             cacheRecent(user);
             callback.onQueryDone(user);
         } else {
-            userFlatFile.fetchAsync(userName, (User user) -> {
+            userFlatFile.fetchAsync(lookupName, (User user) -> {
                 if (user != null && !nameToUser.containsKey(user.getNameKey())) {
                     cacheRecent(user);
                 }

@@ -55,10 +55,11 @@ public class CommandWarehouse implements CommandExecutor {
 
     private void processSend(CommandSender sender, String[] args) {
         if (args.length > 2) {
-            String name = args[1].toUpperCase();
+            String name = args[1];
+            String entryName = args[2].toUpperCase();
             UserCache.getUser(name, (User target) -> {
                 if (target != null) {
-                    WarehouseEntry warehouseEntry = WarehouseCache.getEntry(name);
+                    WarehouseEntry warehouseEntry = WarehouseCache.getEntry(entryName);
                     if (warehouseEntry != null) {
                         PostCache.send(target.getID(), warehouseEntry.getMail());
                         sender.sendMessage(ChatColor.YELLOW + Language.SUCCESS_SENT.fromPlayer(target.getName()));
@@ -66,7 +67,7 @@ public class CommandWarehouse implements CommandExecutor {
                         sender.sendMessage(ChatColor.RED + Language.WARN_UNKNOWN_TYPE.toString());
                     }
                 } else {
-                    sender.sendMessage(ChatColor.RED + Language.WARN_PLAYER_NOT_FOUND.fromPlayer(args[1]));
+                    sender.sendMessage(ChatColor.RED + Language.WARN_PLAYER_NOT_FOUND.fromPlayer(name));
                 }
             });
 

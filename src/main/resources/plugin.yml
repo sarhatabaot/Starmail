@@ -3,7 +3,7 @@ version: 1.7.1
 main: me.sword7.starmail.StarMail
 api-version: 1.13
 authors: [ sword7 ]
-description: A mailing system for Miencraft
+description: A mailing system for Minecraft
 website: https://linktr.ee/devsword7
 softdepend: [dynmap]
 load: POSTWORLD

@@ -6,7 +6,7 @@
 
     <groupId>me.sword7</groupId>
     <artifactId>StarMail</artifactId>
-    <version>1.7.1</version>
+    <version>1.7.2</version>
     <packaging>jar</packaging>
 
     <name>StarMail</name>

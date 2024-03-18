@@ -140,12 +140,13 @@ public class Box {
     }
 
     public static Box getBox(BlockState blockState) {
-        if (blockState instanceof Skull) {
-            final Skull skull = (Skull) blockState;
-            UUID playerID = Head.getPlayerID(skull);
-            return iDToBox.get(playerID);
+        if (!(blockState instanceof Skull)) {
+            return null;
         }
-        return null;
+
+        final Skull skull = (Skull) blockState;
+        UUID playerID = Head.getPlayerID(skull);
+        return iDToBox.get(playerID);
     }
 
     public static Box getBox(ItemStack itemStack) {

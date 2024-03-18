@@ -1,12 +1,11 @@
 package me.sword7.starmail.pack;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.XSound;
 import me.sword7.starmail.gui.page.PageType;
 import me.sword7.starmail.sys.Language;
 import me.sword7.starmail.sys.Version;
 import me.sword7.starmail.util.MailWood;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XPlanks;
-import me.sword7.starmail.util.X.XSound;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -17,8 +16,8 @@ public class Chest extends Pack {
     private static Sound openSound = XSound.BLOCK_CHEST_OPEN.parseSound();
     private static Sound closeSound = XSound.BLOCK_CHEST_CLOSE.parseSound();
 
-    private XPlanks xPlanks;
-    private XGlass wood;
+    private XMaterial xPlanks;
+    private XMaterial wood;
 
     public Chest(PackType type, MailWood mailWood, String profileID, String data) {
         super(type, type.toString(), Language.LABEL_WOODEN_CHEST.fromWood(mailWood.getLanguage()), profileID, data);
@@ -26,13 +25,13 @@ public class Chest extends Pack {
         this.wood = mailWood.getXGlass();
     }
 
-    public Chest(PackType type, String name, String displayName, XGlass wood, String profileID, String data) {
+    public Chest(PackType type, String name, String displayName, XMaterial wood, String profileID, String data) {
         super(type, name, displayName, profileID, data);
         this.wood = wood;
     }
 
     @Override
-    public XGlass getBorder() {
+    public XMaterial getBorder() {
         return wood;
     }
 
@@ -83,11 +82,11 @@ public class Chest extends Pack {
         }
     }
 
-    public XPlanks getXPlanks() {
+    public XMaterial getXPlanks() {
         return xPlanks;
     }
 
-    public XGlass getWood() {
+    public XMaterial getWood() {
         return wood;
     }
 

@@ -1,13 +1,12 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.gui.*;
 import me.sword7.starmail.gui.data.SessionData;
 import me.sword7.starmail.gui.data.WarehouseData;
 import me.sword7.starmail.pack.Pack;
 import me.sword7.starmail.pack.tracking.TrackingCache;
 import me.sword7.starmail.sys.Language;
-import me.sword7.starmail.util.X.XDye;
-import me.sword7.starmail.util.X.XMaterial;
 import me.sword7.starmail.warehouse.WarehouseEntry;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -31,7 +30,7 @@ public class WarehouseOverview implements IPageContents {
 
         ItemStack itemStack = Icons.createIcon(Material.DIAMOND, ChatColor.YELLOW.toString() + Language.LABEL_ITEM);
         ItemStack fromStack = Icons.createIcon(XMaterial.NAME_TAG.parseMaterial(), ChatColor.YELLOW.toString() + Language.LABEL_FROM);
-        ItemStack style = XDye.YELLOW.parseItemStack();
+        ItemStack style = XMaterial.YELLOW_DYE.parseItem();
         ItemMeta meta = style.getItemMeta();
         meta.setDisplayName(ChatColor.YELLOW.toString() + Language.LABEL_STYLE);
         style.setItemMeta(meta);

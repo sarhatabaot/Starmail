@@ -14,8 +14,8 @@ public class GiftSeal extends Seal {
     @Override
     public Inventory populate(Inventory menu, Pack pack) {
         Gift gift = (Gift) pack;
-        ItemStack paper = gift.getPaper().getDot();
-        ItemStack ribbon = gift.getRibbon().getDot();
+        ItemStack paper = gift.getPaper().parseItem();
+        ItemStack ribbon = gift.getRibbon().parseItem();
         ItemStack seal = Icons.createSeal(ribbon);
 
         for (int i = 0; i < 45; i++) {
@@ -30,7 +30,7 @@ public class GiftSeal extends Seal {
 
     }
 
-    private Set<Integer> sealSlots = new ImmutableSet.Builder<Integer>()
+    private final Set<Integer> sealSlots = new ImmutableSet.Builder<Integer>()
             .add(4)
             .add(5)
             .add(13)

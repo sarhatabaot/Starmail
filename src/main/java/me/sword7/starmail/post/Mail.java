@@ -1,8 +1,8 @@
 package me.sword7.starmail.post;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.pack.Pack;
 import me.sword7.starmail.sys.Permissions;
-import me.sword7.starmail.util.X.XMaterial;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

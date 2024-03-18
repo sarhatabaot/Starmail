@@ -1,5 +1,6 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.gui.Icons;
 import me.sword7.starmail.gui.MenuUtil;
 import me.sword7.starmail.gui.data.BoxData;
@@ -7,8 +8,6 @@ import me.sword7.starmail.gui.data.SessionData;
 import me.sword7.starmail.post.notifications.Notifications;
 import me.sword7.starmail.user.User;
 import me.sword7.starmail.user.UserCache;
-import me.sword7.starmail.util.X.XDisc;
-import me.sword7.starmail.util.X.XGlass;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -20,8 +19,8 @@ import static me.sword7.starmail.sys.Language.*;
 
 public class MailNotifications implements IPageContents {
 
-    public static Material onMaterial = XDisc.MUSIC_DISC_STAL.getMaterial();
-    public static Material offMaterial = XDisc.MUSIC_DISC_11.getMaterial();
+    public static Material onMaterial = XMaterial.MUSIC_DISC_STAL.parseMaterial();
+    public static Material offMaterial = XMaterial.MUSIC_DISC_11.parseMaterial();
 
     @Override
     public Inventory populate(Inventory menu, SessionData sessionData) {
@@ -38,8 +37,8 @@ public class MailNotifications implements IPageContents {
         boolean enabled = notifications.isOnJoin();
         ItemStack onJoinStack = Icons.createDisc(enabled ? onMaterial : offMaterial, ChatColor.GRAY + ICON_ON_JOIN.toString());
         menu.setItem(20, onJoinStack);
-        ItemStack enabledStack = enabled ? Icons.createMenuGlass(XGlass.LIME, ChatColor.GREEN, LABEL_ENABLED.toString()) :
-                Icons.createMenuGlass(XGlass.RED, ChatColor.RED, LABEL_DISABLED.toString());
+        ItemStack enabledStack = enabled ? Icons.createMenuGlass(XMaterial.LIME_STAINED_GLASS_PANE, ChatColor.GREEN, LABEL_ENABLED.toString()) :
+                Icons.createMenuGlass(XMaterial.RED_STAINED_GLASS_PANE, ChatColor.RED, LABEL_DISABLED.toString());
         menu.setItem(21, enabledStack);
         menu.setItem(22, enabledStack);
         menu.setItem(23, enabledStack);
@@ -49,8 +48,8 @@ public class MailNotifications implements IPageContents {
         enabled = notifications.isOnReceive();
         ItemStack onReceiveStack = Icons.createDisc(enabled ? onMaterial : offMaterial, ChatColor.GRAY + ICON_ON_RECEIVE.toString());
         menu.setItem(29, onReceiveStack);
-        enabledStack = enabled ? Icons.createMenuGlass(XGlass.LIME, ChatColor.GREEN, LABEL_ENABLED.toString()) :
-                Icons.createMenuGlass(XGlass.RED, ChatColor.RED, LABEL_DISABLED.toString());
+        enabledStack = enabled ? Icons.createMenuGlass(XMaterial.LIME_STAINED_GLASS_PANE, ChatColor.GREEN, LABEL_ENABLED.toString()) :
+                Icons.createMenuGlass(XMaterial.RED_STAINED_GLASS_PANE, ChatColor.RED, LABEL_DISABLED.toString());
         menu.setItem(30, enabledStack);
         menu.setItem(31, enabledStack);
         menu.setItem(32, enabledStack);

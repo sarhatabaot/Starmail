@@ -1,9 +1,9 @@
 package me.sword7.starmail.gui;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.box.BoxType;
 import me.sword7.starmail.post.Mail;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XMaterial;
+import me.sword7.starmail.util.ItemUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
@@ -20,10 +20,10 @@ import static me.sword7.starmail.sys.Language.*;
 public class Icons {
 
     public static ItemStack AIR = new ItemStack(Material.AIR);
-    public static ItemStack BACKGROUND_ITEM = XGlass.WHITE.getDot();
+    public static ItemStack BACKGROUND_ITEM = XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
     public static ItemStack BACK_BUTTON = createBackButton();
     public static ItemStack CLOSE = XMaterial.BARRIER.isSupported() ? createIcon(XMaterial.BARRIER.parseMaterial(), ChatColor.RED + ICON_CLOSE.toString()) :
-            XGlass.RED.getCustom(ChatColor.RED, ICON_CLOSE.toString());
+            ItemUtil.displayName(XMaterial.RED_STAINED_GLASS_PANE.parseItem(), ChatColor.RED+ICON_CLOSE.toString());
     public static ItemStack WAREHOUSE_ITEM = createIcon(XMaterial.BOOKSHELF.parseMaterial(), ChatColor.WHITE + LABEL_WAREHOUSE.toString());
 
 
@@ -58,8 +58,8 @@ public class Icons {
         return icon;
     }
 
-    public static ItemStack createMenuGlass(XGlass xGlass, ChatColor color, String symbol) {
-        ItemStack itemStack = xGlass.getItemStack();
+    public static ItemStack createMenuGlass(XMaterial xGlass, ChatColor color, String symbol) {
+        ItemStack itemStack = xGlass.parseItem();
         ItemMeta meta = itemStack.getItemMeta();
         meta.setDisplayName(color + symbol);
         itemStack.setItemMeta(meta);

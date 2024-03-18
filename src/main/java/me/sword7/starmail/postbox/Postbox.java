@@ -1,8 +1,8 @@
 package me.sword7.starmail.postbox;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.sys.Language;
 import me.sword7.starmail.util.Head;
-import me.sword7.starmail.util.X.XGlass;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.inventory.ItemStack;
@@ -36,9 +36,9 @@ public class Postbox {
     private String name;
     private ItemStack itemStack;
     private UUID profileID;
-    private XGlass xGlass;
+    private XMaterial xGlass;
 
-    public Postbox(PostboxType type, String name, XGlass xGlass, UUID profileID, String data) {
+    public Postbox(PostboxType type, String name, XMaterial xGlass, UUID profileID, String data) {
         this.type = type;
         this.name = name;
         this.xGlass = xGlass;
@@ -62,7 +62,7 @@ public class Postbox {
         return name;
     }
 
-    public XGlass getXGlass() {
+    public XMaterial getXGlass() {
         return xGlass;
     }
 

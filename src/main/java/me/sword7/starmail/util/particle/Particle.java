@@ -1,23 +1,14 @@
 package me.sword7.starmail.util.particle;
 
-import me.sword7.starmail.sys.Version;
+
+import com.cryptomorin.xseries.particles.ParticleDisplay;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 public class Particle {
 
-    private static IParticle particle = selectParticle();
-
-    private static IParticle selectParticle() {
-        Version current = Version.current;
-        if (current.value >= 109) {
-            return new Particle_V1_9();
-        } else {
-            return new Particle_V1_8();
-        }
+    public static void playCloud(final Player player) {
+        Vector dir = player.getLocation().getDirection();
+        player.getLocation().getWorld().spawnParticle(ParticleDisplay.of(org.bukkit.Particle.CLOUD).getParticle(), player.getLocation().add(dir.getX(), 1.5, dir.getY()), 16, 0.2, 0.2, 0.2, 0.2f);
     }
-
-    public static void playCloud(Player player) {
-        particle.playCloud(player);
-    }
-
 }

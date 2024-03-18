@@ -1,8 +1,8 @@
 package me.sword7.starmail.gui;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.XSound;
 import me.sword7.starmail.gui.page.Page;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XSound;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -11,12 +11,12 @@ import org.bukkit.inventory.ItemStack;
 
 public class MenuUtil {
 
-    public static Inventory createMenu(String title, Page page, XGlass theme) {
+    public static Inventory createMenu(String title, Page page, XMaterial theme) {
         int rows = page.getRows();
         Inventory menu = createInventory(rows, title);
 
         //add border
-        ItemStack themeItem = theme.getSwiggle();
+        ItemStack themeItem = theme.parseItem();
 
         for (int i = 0; i < 9; i++) {
             menu.setItem(i, themeItem);

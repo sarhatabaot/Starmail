@@ -1,13 +1,12 @@
 package me.sword7.starmail.pack;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.XSound;
 import me.sword7.starmail.gui.page.PageType;
 import me.sword7.starmail.sys.Language;
 import me.sword7.starmail.sys.config.PluginConfig;
 import me.sword7.starmail.util.Head;
 import me.sword7.starmail.util.MailWood;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XPlanks;
-import me.sword7.starmail.util.X.XSound;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -20,9 +19,9 @@ public class Crate extends Pack {
     private static Sound openSound = XSound.BLOCK_BARREL_OPEN.isSupported() ? XSound.BLOCK_BARREL_OPEN.parseSound() : XSound.BLOCK_CHEST_OPEN.parseSound();
     private static Sound closeSound = XSound.BLOCK_BARREL_CLOSE.isSupported() ? XSound.BLOCK_BARREL_CLOSE.parseSound() : XSound.BLOCK_CHEST_CLOSE.parseSound();
 
-    private XPlanks xPlanks;
-    private XGlass borderWood;
-    private XGlass wood;
+    private XMaterial xPlanks;
+    private XMaterial borderWood;
+    private XMaterial wood;
     private UUID profileIDSeal;
     private String dataSeal;
     private boolean doStraps = false;
@@ -35,7 +34,7 @@ public class Crate extends Pack {
         this.borderWood = mailWood.getXGlass();
     }
 
-    public Crate(PackType type, String name, String displayName, XGlass wood, XGlass borderWood, String profileID, String data) {
+    public Crate(PackType type, String name, String displayName, XMaterial wood, XMaterial borderWood, String profileID, String data) {
         super(type, name, displayName, profileID, data);
         this.wood = wood;
         this.borderWood = borderWood;
@@ -52,7 +51,7 @@ public class Crate extends Pack {
         strapStack = Head.createHeadItem(dataSeal, this.profileIDSeal, displayName);
     }
 
-    public Crate(PackType type, String name, String displayName, XGlass wood, XGlass borderWood, String profileID, String data, String profileIDSeal, String dataSeal) {
+    public Crate(PackType type, String name, String displayName, XMaterial wood, XMaterial borderWood, String profileID, String data, String profileIDSeal, String dataSeal) {
         super(type, name, displayName, profileID, data);
         this.wood = wood;
         this.borderWood = borderWood;
@@ -63,7 +62,7 @@ public class Crate extends Pack {
     }
 
     @Override
-    public XGlass getBorder() {
+    public XMaterial getBorder() {
         return borderWood;
     }
 
@@ -112,15 +111,15 @@ public class Crate extends Pack {
         player.playSound(player.getLocation(), unseal, 2f, 0.7f);
     }
 
-    public XPlanks getXPlanks() {
+    public XMaterial getXPlanks() {
         return xPlanks;
     }
 
-    public XGlass getWood() {
+    public XMaterial getWood() {
         return wood;
     }
 
-    public XGlass getBorderWood() {
+    public XMaterial getBorderWood() {
         return borderWood;
     }
 

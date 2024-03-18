@@ -1,14 +1,14 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.gui.Icons;
 import me.sword7.starmail.gui.data.PostData;
 import me.sword7.starmail.gui.data.SessionData;
 import me.sword7.starmail.postbox.HatBox;
 import me.sword7.starmail.postbox.Postbox;
+import me.sword7.starmail.util.ItemUtil;
 import me.sword7.starmail.util.Scheduler;
 import me.sword7.starmail.util.Symbol;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XMaterial;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import org.bukkit.ChatColor;
@@ -27,15 +27,15 @@ public class PostboxMail extends PostboxMenu implements IInsertable {
         PostData postData = (PostData) sessionData;
         Postbox postbox = postData.getPostbox();
 
-        ItemStack background = postbox.getXGlass().getSwiggle();
+        ItemStack background = postbox.getXGlass().parseItem();
         for (int i = 10; i < 17; i++) {
             menu.setItem(i, background);
         }
 
         if (postbox instanceof HatBox) {
             HatBox hatBox = (HatBox) postbox;
-            ItemStack hatBase = hatBox.getHatBase().getDot();
-            ItemStack hatHighlight = hatBox.getHatHighlight().getDot();
+            ItemStack hatBase = hatBox.getHatBase().parseItem();
+            ItemStack hatHighlight = hatBox.getHatHighlight().parseItem();
             menu.setItem(9, hatHighlight);
             menu.setItem(10, hatBase);
             menu.setItem(12, hatHighlight);
@@ -46,10 +46,16 @@ public class PostboxMail extends PostboxMenu implements IInsertable {
 
         }
 
-        ItemStack doorTop = XGlass.BLACK.getCustom(ChatColor.YELLOW, ChatColor.BOLD + Symbol.DOWN.toString());
-        ItemStack doorBottom = XGlass.WHITE.getCustom(ChatColor.YELLOW, ChatColor.BOLD + Symbol.UP.toString());
-        ItemStack doorLeft = (postbox instanceof HatBox ? XGlass.BLACK : XGlass.WHITE).getCustom(ChatColor.YELLOW, ChatColor.BOLD + Symbol.RIGHT.toString());
-        ItemStack doorRight = (postbox instanceof HatBox ? XGlass.BLACK : XGlass.WHITE).getCustom(ChatColor.YELLOW, ChatColor.BOLD + Symbol.LEFT.toString());
+        ItemStack doorTop = ItemUtil.displayName(XMaterial.BLACK_STAINED_GLASS_PANE.parseItem(), ChatColor.YELLOW.toString() + ChatColor.BOLD + Symbol.DOWN);
+        ItemStack doorBottom = ItemUtil.displayName(XMaterial.WHITE_STAINED_GLASS_PANE.parseItem(), ChatColor.YELLOW.toString() + ChatColor.BOLD + Symbol.UP);
+        ItemStack doorLeft = (postbox instanceof HatBox ? XMaterial.BLACK_STAINED_GLASS.parseItem() : ItemUtil.displayName(
+                XMaterial.WHITE_STAINED_GLASS_PANE.parseItem(),
+                ChatColor.YELLOW.toString() + ChatColor.BOLD + Symbol.RIGHT
+        ));
+        ItemStack doorRight = (postbox instanceof HatBox ? XMaterial.BLACK_STAINED_GLASS.parseItem() : ItemUtil.displayName(
+                XMaterial.WHITE_STAINED_GLASS.parseItem(),
+                ChatColor.YELLOW.toString() + ChatColor.BOLD + Symbol.LEFT
+        ));
 
         for (int i = 20; i < 25; i++) {
             menu.setItem(i, doorTop);

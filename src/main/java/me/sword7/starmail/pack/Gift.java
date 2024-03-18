@@ -1,14 +1,12 @@
 package me.sword7.starmail.pack;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.XSound;
 import me.sword7.starmail.gui.page.PageType;
 import me.sword7.starmail.sys.Language;
 import me.sword7.starmail.sys.Version;
 import me.sword7.starmail.util.MailColor;
 import me.sword7.starmail.util.MailUtil;
-import me.sword7.starmail.util.X.XDye;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XMaterial;
-import me.sword7.starmail.util.X.XSound;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -19,12 +17,12 @@ public class Gift extends Pack {
     private static Sound openSound = XSound.BLOCK_BARREL_OPEN.isSupported() ? XSound.BLOCK_BARREL_OPEN.parseSound() : XSound.BLOCK_CHEST_OPEN.parseSound();
     private static Sound closeSound = XSound.BLOCK_BARREL_CLOSE.isSupported() ? XSound.BLOCK_BARREL_CLOSE.parseSound() : XSound.BLOCK_CHEST_CLOSE.parseSound();
 
-    private XDye xDye;
-    private XGlass paper;
-    private XGlass ribbon;
+    private XMaterial xDye;
+    private XMaterial paper;
+    private XMaterial ribbon;
     private ItemStack sealBaseStack;
 
-    public Gift(PackType type, MailColor mailColor, XGlass ribbon, String profileID, String data) {
+    public Gift(PackType type, MailColor mailColor, XMaterial ribbon, String profileID, String data) {
         super(type, type.toString(), Language.LABEL_DYED_GIFT.fromColor(mailColor.getLanguage()), profileID, data);
         this.xDye = mailColor.getXDye();
         this.paper = mailColor.getXGlass();
@@ -32,7 +30,7 @@ public class Gift extends Pack {
         this.sealBaseStack = parseCarpetItemStack();
     }
 
-    public Gift(PackType type, String name, String displayName, XGlass paper, XGlass ribbon, String profileID, String data) {
+    public Gift(PackType type, String name, String displayName, XMaterial paper, XMaterial ribbon, String profileID, String data) {
         super(type, name, displayName, profileID, data);
         this.paper = paper;
         this.ribbon = ribbon;
@@ -40,7 +38,7 @@ public class Gift extends Pack {
     }
 
     @Override
-    public XGlass getBorder() {
+    public XMaterial getBorder() {
         return paper;
     }
 
@@ -99,7 +97,7 @@ public class Gift extends Pack {
         if (Version.current.hasExtendedEnums()) {
             return new ItemStack(material);
         } else {
-            return new ItemStack(material, 1, (short) ribbon.getAbyte());
+            return new ItemStack(material, 1, ribbon.getData());
         }
     }
 
@@ -109,15 +107,15 @@ public class Gift extends Pack {
     }
 
 
-    public XDye getXDye() {
+    public XMaterial getXDye() {
         return xDye;
     }
 
-    public XGlass getPaper() {
+    public XMaterial getPaper() {
         return paper;
     }
 
-    public XGlass getRibbon() {
+    public XMaterial getRibbon() {
         return ribbon;
     }
 }

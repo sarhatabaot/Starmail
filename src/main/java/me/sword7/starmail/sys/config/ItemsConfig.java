@@ -1,12 +1,12 @@
 package me.sword7.starmail.sys.config;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.box.Box;
 import me.sword7.starmail.box.BoxType;
 import me.sword7.starmail.letter.Letter;
 import me.sword7.starmail.letter.LetterType;
 import me.sword7.starmail.pack.*;
 import me.sword7.starmail.util.MailColor;
-import me.sword7.starmail.util.X.XGlass;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -42,8 +42,8 @@ public class ItemsConfig {
                         String key = cratesKey + "." + crateName;
                         String name = crateName.toUpperCase().replaceAll(" ", "_");
                         String displayName = config.getString(key + ".displayName");
-                        XGlass glass = XGlass.valueOf(config.getString(key + ".glass"));
-                        XGlass glassBorder = config.contains(key + ".borderGlass") ? XGlass.valueOf(config.getString(key + ".borderGlass")) : null;
+                        XMaterial glass = XMaterial.valueOf(config.getString(key + ".glass"));
+                        XMaterial glassBorder = config.contains(key + ".borderGlass") ? XMaterial.valueOf(config.getString(key + ".borderGlass")) : null;
                         UUID profile = UUID.fromString(config.getString(key + ".profile"));
                         String texture = config.getString(key + ".texture");
                         if (config.contains(key + ".profileSeal") && config.contains(key + ".textureSeal")) {
@@ -65,7 +65,7 @@ public class ItemsConfig {
                         String key = chestsKey + "." + chestName;
                         String name = chestName.toUpperCase().replaceAll(" ", "_");
                         String displayName = config.getString(key + ".displayName");
-                        XGlass glass = XGlass.valueOf(config.getString(key + ".glass"));
+                        XMaterial glass = XMaterial.valueOf(config.getString(key + ".glass"));
                         UUID profile = UUID.fromString(config.getString(key + ".profile"));
                         String texture = config.getString(key + ".texture");
                         customPacks.add(new Chest(PackType.CUSTOM, name, displayName, glass, profile.toString(), texture));
@@ -81,8 +81,8 @@ public class ItemsConfig {
                         String key = giftsKey + "." + giftName;
                         String name = giftName.toUpperCase().replaceAll(" ", "_");
                         String displayName = config.getString(key + ".displayName");
-                        XGlass paper = XGlass.valueOf(config.getString(key + ".paperGlass"));
-                        XGlass ribbon = XGlass.valueOf(config.getString(key + ".ribbonGlass"));
+                        XMaterial paper = XMaterial.valueOf(config.getString(key + ".paperGlass"));
+                        XMaterial ribbon = XMaterial.valueOf(config.getString(key + ".ribbonGlass"));
                         UUID profile = UUID.fromString(config.getString(key + ".profile"));
                         String texture = config.getString(key + ".texture");
                         customPacks.add(new Gift(PackType.CUSTOM, name, displayName, paper, ribbon, profile.toString(), texture));

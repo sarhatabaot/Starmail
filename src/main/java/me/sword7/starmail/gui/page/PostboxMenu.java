@@ -1,5 +1,6 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.gui.*;
 import me.sword7.starmail.gui.data.PostData;
 import me.sword7.starmail.gui.data.SessionData;
@@ -7,8 +8,7 @@ import me.sword7.starmail.letter.LetterType;
 import me.sword7.starmail.postbox.Postbox;
 import me.sword7.starmail.sys.Language;
 import me.sword7.starmail.util.Head;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XMaterial;
+import me.sword7.starmail.util.ItemUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -32,8 +32,8 @@ public abstract class PostboxMenu implements IPageContents {
         bookMeta.setDisplayName(ChatColor.YELLOW + Language.ICON_INSERT_MAIL.toString());
         menu.setItem(1, LetterType.DEFAULT.getLetter().getLetter(bookMeta));
         ItemStack arrowBroken = Icons.createIcon(Material.BARRIER, ChatColor.RED + "=/=>");
-        ItemStack arrowOne = postData.isValidMails() ? XGlass.LIME.getCustom(ChatColor.GREEN, "==>") : arrowBroken;
-        ItemStack arrowTwo = postData.isValidMails() && postData.hasTo() ? XGlass.LIME.getCustom(ChatColor.GREEN, "==>") : arrowBroken;
+        ItemStack arrowOne = postData.isValidMails() ? ItemUtil.displayName(XMaterial.LIME_STAINED_GLASS_PANE.parseItem(),ChatColor.GREEN+ "==>") : arrowBroken;
+        ItemStack arrowTwo = postData.isValidMails() && postData.hasTo() ? ItemUtil.displayName(XMaterial.LIME_STAINED_GLASS_PANE.parseItem(),ChatColor.GREEN+ "==>") : arrowBroken;
         menu.setItem(2, arrowOne);
         menu.setItem(3, arrowOne);
         menu.setItem(4, Icons.createIcon(Material.NAME_TAG, ChatColor.YELLOW + Language.ICON_TO.toString()));

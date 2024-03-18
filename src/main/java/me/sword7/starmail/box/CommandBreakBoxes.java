@@ -1,7 +1,7 @@
 package me.sword7.starmail.box;
 
+import com.cryptomorin.xseries.XSound;
 import me.sword7.starmail.util.LocationParts;
-import me.sword7.starmail.util.X.XSound;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;

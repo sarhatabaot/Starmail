@@ -1,11 +1,11 @@
 package me.sword7.starmail.pack;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.XSound;
 import me.sword7.starmail.gui.page.PageType;
 import me.sword7.starmail.sys.config.ItemsConfig;
 import me.sword7.starmail.util.Head;
 import me.sword7.starmail.util.MailUtil;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XSound;
 import com.google.common.collect.ImmutableSet;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -101,7 +101,7 @@ public abstract class Pack {
         return data;
     }
 
-    public abstract XGlass getBorder();
+    public abstract XMaterial getBorder();
 
     public ItemStack getEmptyPack() {
         ItemStack itemStack = baseItemStack.clone();

@@ -1,5 +1,7 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XItemStack;
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.gui.Icons;
 import me.sword7.starmail.gui.LiveSessions;
 import me.sword7.starmail.gui.MenuUtil;
@@ -8,7 +10,7 @@ import me.sword7.starmail.gui.data.SessionData;
 import me.sword7.starmail.pack.Crate;
 import me.sword7.starmail.pack.Pack;
 import me.sword7.starmail.pack.tracking.TrackingCache;
-import me.sword7.starmail.util.X.XGlass;
+import me.sword7.starmail.util.ItemUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -23,7 +25,7 @@ import static me.sword7.starmail.sys.Language.*;
 
 public class EmptyPackage implements IInsertable {
 
-    private static final ItemStack BLACK = XGlass.BLACK.getCustom(ChatColor.DARK_GRAY, "~");
+    private static final ItemStack BLACK = ItemUtil.displayName(XMaterial.BLACK_STAINED_GLASS_PANE.parseItem(), ChatColor.DARK_GRAY + "~");
 
     public EmptyPackage() {
         buildInsertables();
@@ -43,7 +45,9 @@ public class EmptyPackage implements IInsertable {
         for (int i = 0; i < 21; i++) {
             int mailIndex = i;
             ItemStack itemStack = (mailIndex < contents.length) ? contents[mailIndex] : Icons.AIR;
-            if (itemStack == null) itemStack = Icons.AIR;
+            if (itemStack == null) {
+                itemStack = Icons.AIR;
+            }
             menu.setItem(index, itemStack);
             index += ((index + 2) % 9 == 0 ? 3 : 1);
         }
@@ -103,7 +107,7 @@ public class EmptyPackage implements IInsertable {
                     player.getInventory().setItem(handSlot, sealedItem);
                 } else {
                     Map<Integer, ItemStack> overFlow = player.getInventory().addItem(sealedItem);
-                    if (overFlow.size() > 0) {
+                    if (!overFlow.isEmpty()) {
                         player.getLocation().getWorld().dropItemNaturally(player.getLocation(), overFlow.get(0));
                     }
                 }

@@ -1,5 +1,6 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.StarMail;
 import me.sword7.starmail.box.Box;
 import me.sword7.starmail.gui.Icons;
@@ -7,7 +8,6 @@ import me.sword7.starmail.gui.data.PostData;
 import me.sword7.starmail.gui.data.TipData;
 import me.sword7.starmail.util.AnimationUtil;
 import me.sword7.starmail.util.Scheduler;
-import me.sword7.starmail.util.X.XMaterial;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -68,7 +68,7 @@ public class PostboxSendAnimation extends BukkitRunnable {
                 setBase();
                 setItem(6, Icons.AIR);
             } else if (frame >= 13 && frame < 18) {
-                ItemStack background = postData.getPostbox().getXGlass().getSwiggle();
+                ItemStack background = postData.getPostbox().getXGlass().parseItem();
                 setItem(1, background);
                 setItem(2, background);
                 setItem(3, background);

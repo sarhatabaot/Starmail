@@ -1,10 +1,11 @@
 package me.sword7.starmail.util;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
+import com.cryptomorin.xseries.XMaterial;
+import de.tr7zw.changeme.nbtapi.NBT;
+import de.tr7zw.changeme.nbtapi.iface.ReadWriteNBT;
+import de.tr7zw.changeme.nbtapi.iface.ReadableNBT;
 import me.sword7.starmail.sys.Version;
 import me.sword7.starmail.user.User;
-import me.sword7.starmail.util.X.XMaterial;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Skull;
@@ -35,14 +36,14 @@ public class Head {
         UUID userID = user.getID();
         if (playerToHead.containsKey(userID)) {
             return playerToHead.get(userID).clone();
-        } else {
-            ItemStack head = Head.getHead(userID, user.getName());
-            SkullMeta meta = (SkullMeta) head.getItemMeta();
-            meta.setDisplayName(ChatColor.WHITE + user.getName());
-            head.setItemMeta(meta);
-            playerToHead.put(userID, head);
-            return head.clone();
         }
+
+        ItemStack head = Head.getHead(userID, user.getName());
+        SkullMeta meta = (SkullMeta) head.getItemMeta();
+        meta.setDisplayName(ChatColor.WHITE + user.getName());
+        head.setItemMeta(meta);
+        playerToHead.put(userID, head);
+        return head.clone();
     }
 
     public static ItemStack getHead(String url, String profileName, UUID profileID) {
@@ -54,17 +55,19 @@ public class Head {
     }
 
     public static void assignTexture(ItemStack head, String url, String profileName, UUID profileID) {
-        SkullMeta skullMeta = (SkullMeta) head.getItemMeta();
-        GameProfile profile = new GameProfile(profileID, profileName);
-        profile.getProperties().put("textures", new Property("textures", url));
-        try {
-            Field profileField = skullMeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(skullMeta, profile);
-        } catch (IllegalArgumentException | SecurityException | NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        head.setItemMeta(skullMeta);
+        NBT.modify(head, nbt -> {
+            final ReadWriteNBT skullOwnerCompound = nbt.getOrCreateCompound("SkullOwner");
+
+            // The owner UUID. Note that skulls with the same UUID but different textures will misbehave and only one texture will load.
+            // They will share the texture. To avoid this limitation, it is recommended to use a random UUID.
+            skullOwnerCompound.setUUID("Id", UUID.randomUUID());
+
+            skullOwnerCompound.getOrCreateCompound("Properties")
+                    .getCompoundList("textures")
+                    .addCompound()
+                    .setString("Value", url);
+        });
+
     }
 
     public static ItemStack getSteeveHead(String name) {
@@ -77,10 +80,12 @@ public class Head {
 
     public static ItemStack getHead(UUID playerID, String playerName) {
         ItemStack head = currentValue >= 113 ? new ItemStack(XMaterial.PLAYER_HEAD.parseMaterial()) : new ItemStack(XMaterial.PLAYER_HEAD.parseMaterial(), 1, (short) 3);
+
+
         SkullMeta skullMeta = (SkullMeta) head.getItemMeta();
         GameProfile profile = new GameProfile(playerID, playerName);
         if (currentValue >= 117) {
-            skullMeta.setOwningPlayer(Bukkit.getServer().getOfflinePlayer(profile.getId()));
+            skullMeta.setOwningPlayer(Bukkit.getServer().getOfflinePlayer(playerID));
         } else {
             try {
                 Field profileField = skullMeta.getClass().getDeclaredField("profile");
@@ -90,20 +95,14 @@ public class Head {
                 e.printStackTrace();
             }
         }
+
         head.setItemMeta(skullMeta);
         return head;
     }
 
     public static UUID getPlayerID(SkullMeta skullMeta) {
         try {
-            if (currentValue >= 113) {
-                return skullMeta.getOwningPlayer().getUniqueId();
-            } else {
-                Field profileField = skullMeta.getClass().getDeclaredField("profile");
-                profileField.setAccessible(true);
-                GameProfile profile = (GameProfile) profileField.get(skullMeta);
-                return profile.getId();
-            }
+            return skullMeta.getOwningPlayer().getUniqueId();
         } catch (Exception e) {
             return null;
         }
@@ -113,12 +112,12 @@ public class Head {
         try {
             if (currentValue >= 113) {
                 return skull.getOwningPlayer().getUniqueId();
-            } else {
-                Field profileField = skull.getClass().getDeclaredField("profile");
-                profileField.setAccessible(true);
-                GameProfile profile = (GameProfile) profileField.get(skull);
-                return profile.getId();
             }
+
+            return NBT.get(skull, nbt -> {
+                final ReadableNBT skullOwnerCompound = nbt.getCompound("SkullOwner");
+                return skullOwnerCompound.getUUID("profile");
+            });
         } catch (Exception e) {
             return null;
         }

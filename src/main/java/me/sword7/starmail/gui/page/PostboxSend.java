@@ -29,7 +29,7 @@ public class PostboxSend extends PostboxMenu {
         PostData postData = (PostData) sessionData;
         postData.changeAnimationMenu(menu);
         Postbox postbox = postData.getPostbox();
-        ItemStack background = postbox.getXGlass().getSwiggle();
+        ItemStack background = postbox.getXGlass().parseItem();
         for (int i = 1; i < 5; i++) {
             int rowStart = (i * 9);
             for (int j = 1; j < 8; j++) {
@@ -39,8 +39,8 @@ public class PostboxSend extends PostboxMenu {
 
         if (postbox instanceof HatBox) {
             HatBox hatBox = (HatBox) postbox;
-            ItemStack hatBase = hatBox.getHatBase().getDot();
-            ItemStack hatHighlight = hatBox.getHatHighlight().getDot();
+            ItemStack hatBase = hatBox.getHatBase().parseItem();
+            ItemStack hatHighlight = hatBox.getHatHighlight().parseItem();
             menu.setItem(9, hatHighlight);
             menu.setItem(10, hatBase);
             menu.setItem(12, hatHighlight);

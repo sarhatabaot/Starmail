@@ -1,8 +1,9 @@
 package me.sword7.starmail.util;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.XSound;
 import me.sword7.starmail.gui.Icons;
-import me.sword7.starmail.util.X.XMaterial;
-import me.sword7.starmail.util.X.XSound;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;

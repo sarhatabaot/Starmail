@@ -1,12 +1,11 @@
 package me.sword7.starmail.box;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.XSound;
 import me.sword7.starmail.sys.config.ItemsConfig;
 import me.sword7.starmail.util.Head;
 import me.sword7.starmail.util.MailColor;
 import me.sword7.starmail.util.MailUtil;
-import me.sword7.starmail.util.X.XDye;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XSound;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.block.BlockState;
@@ -46,16 +45,16 @@ public class Box {
     private BoxType type;
     private String displayName;
     private String name;
-    private XGlass glass;
-    private XGlass highlight;
-    private XGlass flag;
+    private XMaterial glass;
+    private XMaterial highlight;
+    private XMaterial flag;
     private ItemStack itemStack;
     private UUID profileID;
     private ChatColor color;
-    private XDye xDye;
+    private XMaterial xDye;
     private String symbol;
 
-    public Box(BoxType type, String name, String displayName, MailColor color, XGlass highlight, XGlass flag, UUID profileID, String data) {
+    public Box(BoxType type, String name, String displayName, MailColor color, XMaterial highlight, XMaterial flag, UUID profileID, String data) {
         this.type = type;
         this.name = name;
         this.displayName = displayName;
@@ -68,7 +67,7 @@ public class Box {
         this.itemStack = Head.createHeadItem(data, profileID, displayName);
     }
 
-    public Box(BoxType type, MailColor color, XGlass highlight, XGlass flag, UUID profileID, String data) {
+    public Box(BoxType type, MailColor color, XMaterial highlight, XMaterial flag, UUID profileID, String data) {
         this.type = type;
         this.name = type.toString();
         this.displayName = LABEL_DYED_MAILBOX.fromColor(color.getLanguage());
@@ -86,7 +85,7 @@ public class Box {
         return type;
     }
 
-    public XGlass getGlass() {
+    public XMaterial getGlass() {
         return glass;
     }
 
@@ -94,7 +93,7 @@ public class Box {
         return itemStack.clone();
     }
 
-    private static String GLOBAL_LORE = ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_GLOBAL_BOX.toString();
+    private static String GLOBAL_LORE = ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_GLOBAL_BOX;
 
     public ItemStack getGlobalItemStack() {
         ItemStack itemStack = this.itemStack.clone();
@@ -105,7 +104,7 @@ public class Box {
     }
 
     public static boolean isGlobal(ItemStack itemStack) {
-        return (itemStack != null) ? isGlobal(itemStack.getItemMeta()) : false;
+        return itemStack != null && isGlobal(itemStack.getItemMeta());
     }
 
     public static boolean isGlobal(ItemMeta meta) {
@@ -120,7 +119,7 @@ public class Box {
         return color;
     }
 
-    public XDye getXDye() {
+    public XMaterial getXDye() {
         return xDye;
     }
 
@@ -142,7 +141,8 @@ public class Box {
 
     public static Box getBox(BlockState blockState) {
         if (blockState instanceof Skull) {
-            UUID playerID = Head.getPlayerID((Skull) blockState);
+            final Skull skull = (Skull) blockState;
+            UUID playerID = Head.getPlayerID(skull);
             return iDToBox.get(playerID);
         }
         return null;
@@ -154,7 +154,8 @@ public class Box {
 
     public static Box getBox(ItemMeta meta) {
         if (meta instanceof SkullMeta) {
-            return iDToBox.get(Head.getPlayerID((SkullMeta) meta));
+            final SkullMeta skull = (SkullMeta) meta;
+            return iDToBox.get(Head.getPlayerID(skull));
         }
         return null;
     }
@@ -175,11 +176,11 @@ public class Box {
         return nameToBox.values();
     }
 
-    public XGlass getHighlight() {
+    public XMaterial getHighlight() {
         return highlight;
     }
 
-    public XGlass getFlag() {
+    public XMaterial getFlag() {
         return flag;
     }
 

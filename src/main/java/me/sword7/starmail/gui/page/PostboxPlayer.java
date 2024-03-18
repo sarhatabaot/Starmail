@@ -1,11 +1,11 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import me.sword7.starmail.gui.MenuUtil;
 import me.sword7.starmail.gui.data.PostData;
 import me.sword7.starmail.gui.data.SessionData;
 import me.sword7.starmail.util.Key;
-import me.sword7.starmail.util.X.XGlass;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.Inventory;
@@ -18,7 +18,7 @@ public class PostboxPlayer extends PostboxMenu {
     @Override
     public void populatePostbox(Inventory menu, SessionData sessionData) {
         PostData postData = (PostData) sessionData;
-        ItemStack keyboardBackground = XGlass.BLACK.getDot();
+        ItemStack keyboardBackground = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();
         if (postData.getState() == PostData.keyState.LETTERS) {
             for (int i = 9; i < 45; i++) {
                 ItemStack itemStack = slotToKeyLetters.containsKey(i) ? slotToKeyLetters.get(i).getItemStack() : keyboardBackground;

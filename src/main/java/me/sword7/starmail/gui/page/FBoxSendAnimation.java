@@ -1,11 +1,11 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.StarMail;
 import me.sword7.starmail.gui.data.FBoxData;
 import me.sword7.starmail.gui.data.TipData;
 import me.sword7.starmail.util.AnimationUtil;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XMaterial;
+
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -15,7 +15,7 @@ public class FBoxSendAnimation extends BukkitRunnable {
 
     private static ItemStack arrow = AnimationUtil.getArrow();
     private static ItemStack arrowHighlight = AnimationUtil.getArrowHighlight();
-    private static ItemStack voidStack = XGlass.BLACK.getDot();
+    private static ItemStack voidStack = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();
 
     private final FBoxData fBoxData;
     private final Player player;

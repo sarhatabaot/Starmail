@@ -1,10 +1,10 @@
 package me.sword7.starmail.warehouse;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.letter.Letter;
 import me.sword7.starmail.pack.Pack;
 import me.sword7.starmail.post.Mail;
 import me.sword7.starmail.sys.Language;
-import me.sword7.starmail.util.X.XMaterial;
 import org.bukkit.inventory.ItemStack;
 
 public class WarehouseEntry {

@@ -1,6 +1,6 @@
 package me.sword7.starmail.util;
 
-import me.sword7.starmail.util.X.XMaterial;
+import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -20,7 +20,7 @@ public class MailUtil {
             if (itemStack != null) {
                 if (!player.isDead() && player.isOnline()) {
                     Map<Integer, ItemStack> overFlow = inventory.addItem(itemStack);
-                    if (overFlow.size() > 0) {
+                    if (!overFlow.isEmpty()) {
                         player.getLocation().getWorld().dropItemNaturally(player.getLocation(), overFlow.get(0));
                     }
                 } else {
@@ -45,7 +45,7 @@ public class MailUtil {
     public static String getFirstLineLore(ItemMeta meta) {
         if (meta != null) {
             List<String> lore = meta.getLore();
-            if (lore != null && lore.size() > 0) {
+            if (lore != null && !lore.isEmpty()) {
                 return lore.get(0);
             } else {
                 return "";

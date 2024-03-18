@@ -1,5 +1,6 @@
 package me.sword7.starmail;
 
+import com.cryptomorin.xseries.XSound;
 import me.sword7.starmail.box.Box;
 import me.sword7.starmail.box.BoxCache;
 import me.sword7.starmail.box.PlacedBox;
@@ -16,7 +17,6 @@ import me.sword7.starmail.user.User;
 import me.sword7.starmail.user.UserCache;
 import me.sword7.starmail.util.MailUtil;
 import me.sword7.starmail.util.Scheduler;
-import me.sword7.starmail.util.X.XSound;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;

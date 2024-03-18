@@ -1,5 +1,6 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.gui.*;
 import me.sword7.starmail.gui.data.SessionData;
 import me.sword7.starmail.gui.data.WarehouseData;
@@ -8,8 +9,6 @@ import me.sword7.starmail.pack.Crate;
 import me.sword7.starmail.pack.Pack;
 import me.sword7.starmail.sys.Language;
 import me.sword7.starmail.util.Head;
-import me.sword7.starmail.util.X.XDye;
-import me.sword7.starmail.util.X.XMaterial;
 import me.sword7.starmail.warehouse.WarehouseCache;
 import me.sword7.starmail.warehouse.WarehouseEntry;
 import org.bukkit.ChatColor;
@@ -32,7 +31,7 @@ public class WarehouseStyle implements IPageContents {
 
     @Override
     public Inventory populate(Inventory menu, SessionData sessionData) {
-        ItemStack styleStack = XDye.YELLOW.parseItemStack();
+        ItemStack styleStack = XMaterial.YELLOW_DYE.parseItem();
         ItemMeta meta = styleStack.getItemMeta();
         meta.setDisplayName(ChatColor.WHITE.toString() + Language.LABEL_STYLE);
         styleStack.setItemMeta(meta);

@@ -7,7 +7,8 @@ import me.sword7.starmail.box.PlacedBox;
 import me.sword7.starmail.postbox.Postbox;
 import me.sword7.starmail.sys.config.IntegrationConfig;
 import org.bukkit.plugin.Plugin;
-import org.dynmap.DynmapAPI;
+import org.dynmap.DynmapCommonAPI;
+import org.dynmap.DynmapCommonAPIListener;
 import org.dynmap.markers.Marker;
 import org.dynmap.markers.MarkerAPI;
 import org.dynmap.markers.MarkerIcon;
@@ -27,7 +28,7 @@ public class Dynmap {
     private Map<UUID, MarkerIcon> postboxToIcon = new HashMap<>();
 
     private MarkerAPI markerAPI;
-    private DynmapAPI dynmapAPI;
+    private DynmapCommonAPI dynmapAPI;
     private MarkerIcon defaultMailIcon;
     private MarkerIcon defaultPostIcon;
     private MarkerSet mailboxIconSet;
@@ -42,7 +43,7 @@ public class Dynmap {
     private int postMaxZoom;
 
     public Dynmap(Plugin plugin) {
-        this.dynmapAPI = (DynmapAPI) plugin;
+        this.dynmapAPI = (DynmapCommonAPI) plugin;
         this.markerAPI = dynmapAPI.getMarkerAPI();
         load();
     }
@@ -112,7 +113,7 @@ public class Dynmap {
             Box box = placedBox.getBox();
             UUID typeID = box.getProfileID();
             MarkerIcon markerIcon = boxToIcon.containsKey(typeID) ? boxToIcon.get(typeID) : defaultMailIcon;
-            Marker marker = mailboxIconSet.createMarker(markerID, LABEL_MAILBOX.toString() + postfix, locationParts.getWorldName(), locationParts.getBlockX(), locationParts.getBlockY(), locationParts.getBlockZ(), markerIcon, false);
+            Marker marker = mailboxIconSet.createMarker(markerID, LABEL_MAILBOX + postfix, locationParts.getWorldName(), locationParts.getBlockX(), locationParts.getBlockY(), locationParts.getBlockZ(), markerIcon, false);
             if (minZoom > 0) marker.setMinZoom(minZoom);
             if (maxZoom > 0) marker.setMaxZoom(maxZoom);
             locationToMarker.put(locationParts, marker);

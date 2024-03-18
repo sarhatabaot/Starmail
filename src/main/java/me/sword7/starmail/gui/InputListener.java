@@ -9,7 +9,6 @@ import me.sword7.starmail.gui.data.SessionData;
 import me.sword7.starmail.gui.page.IInsertable;
 import me.sword7.starmail.gui.page.Page;
 import me.sword7.starmail.sys.Version;
-import me.sword7.starmail.util.X.XClickType;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -81,21 +80,20 @@ public class InputListener implements Listener {
                             doFakeShift(top, bottom, slot, orderedSlots, packItemSlot);
                         }
                     }
-                } else if (XClickType.SWAP_OFFHAND.isSupported() && clickType == XClickType.SWAP_OFFHAND.getClickType()) {
-                    if (isGUIClick && !isInsertableSlot) {
-                        e.setCancelled(true);
-                        sessionData.fixOffHandGlitch();
-                    } else if (packItemSlot == slot) {
+                } /*else if (XClickType.SWAP_OFFHAND.isSupported() && clickType == XClickType.SWAP_OFFHAND.getClickType()) {
+                    if ((isGUIClick && !isInsertableSlot) || packItemSlot == slot) {
                         e.setCancelled(true);
                         sessionData.fixOffHandGlitch();
                     }
-                } else {
+                } */else {
                     if (isGUIClick && !isInsertableSlot) {
                         e.setCancelled(true);
                     }
                 }
 
-                if (slot == packItemSlot || e.getHotbarButton() == packItemSlot) e.setCancelled(true);
+                if (slot == packItemSlot || e.getHotbarButton() == packItemSlot) {
+                    e.setCancelled(true);
+                }
 
                 if (isGUIClick || isInsertablePage) {
                     int effectiveSlot = isGUIClick ? slot : -1;
@@ -107,7 +105,7 @@ public class InputListener implements Listener {
         }
     }
 
-    private List<Integer> ShiftOrderSlots = new ImmutableList.Builder<Integer>()
+    private final List<Integer> ShiftOrderSlots = new ImmutableList.Builder<Integer>()
             .add(8).add(7).add(6).add(5).add(4).add(3).add(2).add(1).add(0)
             .add(35).add(34).add(33).add(32).add(31).add(30).add(29).add(28).add(27)
             .add(26).add(25).add(24).add(23).add(22).add(21).add(20).add(19).add(18)
@@ -117,41 +115,46 @@ public class InputListener implements Listener {
 
     private void doFakeShift(Inventory menuTo, Inventory menuFrom, int slot, List<Integer> orderedSlots, int packSlot) {
         ItemStack clickedItem = menuFrom.getItem(slot);
-        if (clickedItem != null) {
-            int amountToRid = clickedItem.getAmount();
-            int maxStack = clickedItem.getMaxStackSize();
-            int index = 0;
-            while (amountToRid > 0 && index < orderedSlots.size()) {
-                if (orderedSlots.get(index) != packSlot) {
-                    ItemStack itemStack = menuTo.getItem(orderedSlots.get(index));
-                    if (itemStack != null && itemStack.getType() == clickedItem.getType() && itemStack.getItemMeta().equals(clickedItem.getItemMeta())) {
-                        int canTake = maxStack - itemStack.getAmount();
-                        int toAdd = canTake > amountToRid ? amountToRid : canTake;
-                        amountToRid -= toAdd;
-                        itemStack.setAmount(itemStack.getAmount() + toAdd);
-                    }
-                }
-                index++;
-            }
-            //check again for null
-            index = 0;
-            while (amountToRid > 0 && index < orderedSlots.size()) {
-                if (orderedSlots.get(index) != packSlot) {
-                    ItemStack itemStack = menuTo.getItem(orderedSlots.get(index));
-                    if (itemStack == null) {
-                        ItemStack toSet = clickedItem.clone();
-                        toSet.setAmount(amountToRid);
-                        amountToRid -= amountToRid;
-                        menuTo.setItem(orderedSlots.get(index), toSet);
-                    }
-                }
-                index++;
-            }
-
-            ItemStack toSet = amountToRid > 0 ? clickedItem.clone() : new ItemStack(Material.AIR);
-            if (amountToRid > 0) toSet.setAmount(amountToRid);
-            menuFrom.setItem(slot, toSet);
+        if (clickedItem == null) {
+            return;
         }
+
+        int amountToRid = clickedItem.getAmount();
+        int maxStack = clickedItem.getMaxStackSize();
+        int index = 0;
+        while (amountToRid > 0 && index < orderedSlots.size()) {
+            if (orderedSlots.get(index) != packSlot) {
+                ItemStack itemStack = menuTo.getItem(orderedSlots.get(index));
+                if (itemStack != null && itemStack.getType() == clickedItem.getType() && itemStack.getItemMeta().equals(clickedItem.getItemMeta())) {
+                    int canTake = maxStack - itemStack.getAmount();
+                    int toAdd = Math.min(canTake, amountToRid);
+                    amountToRid -= toAdd;
+                    itemStack.setAmount(itemStack.getAmount() + toAdd);
+                }
+            }
+            index++;
+        }
+        //check again for null
+        index = 0;
+        while (amountToRid > 0 && index < orderedSlots.size()) {
+            if (orderedSlots.get(index) != packSlot) {
+                ItemStack itemStack = menuTo.getItem(orderedSlots.get(index));
+                if (itemStack == null) {
+                    ItemStack toSet = clickedItem.clone();
+                    toSet.setAmount(amountToRid);
+                    amountToRid -= amountToRid;
+                    menuTo.setItem(orderedSlots.get(index), toSet);
+                }
+            }
+            index++;
+        }
+
+        ItemStack toSet = amountToRid > 0 ? clickedItem.clone() : new ItemStack(Material.AIR);
+        if (amountToRid > 0) {
+            toSet.setAmount(amountToRid);
+        }
+        menuFrom.setItem(slot, toSet);
+
     }
 
     private void doFakeDouble(InventoryClickEvent e, InventoryView inventoryView, List<Integer> orderedSlots, int packSlot) {
@@ -165,7 +168,7 @@ public class InputListener implements Listener {
                     ItemStack itemStack = inventoryView.getItem(orderedSlots.get(index));
                     if (itemStack != null && itemStack.getAmount() < maxStack && itemStack.getType() == clickedItem.getType() && itemStack.getItemMeta().equals(clickedItem.getItemMeta())) {
                         int canTake = itemStack.getAmount();
-                        int toAdd = canTake > amountTillStack ? amountTillStack : canTake;
+                        int toAdd = Math.min(canTake, amountTillStack);
                         amountTillStack -= toAdd;
                         setAmount(inventoryView, itemStack, itemStack.getAmount() - toAdd, orderedSlots.get(index));
                     }
@@ -180,7 +183,7 @@ public class InputListener implements Listener {
                     ItemStack itemStack = inventoryView.getItem(orderedSlots.get(index));
                     if (itemStack != null && itemStack.getType() == clickedItem.getType() && itemStack.getItemMeta().equals(clickedItem.getItemMeta())) {
                         int canTake = itemStack.getAmount();
-                        int toAdd = canTake > amountTillStack ? amountTillStack : canTake;
+                        int toAdd = Math.min(canTake, amountTillStack);
                         amountTillStack -= toAdd;
                         setAmount(inventoryView, itemStack, itemStack.getAmount() - toAdd, orderedSlots.get(index));
                     }
@@ -247,7 +250,7 @@ public class InputListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onClose(InventoryCloseEvent e) {
         if (e.getPlayer() instanceof Player) {
-            Player player = (Player) e.getPlayer();
+            final Player player = (Player) e.getPlayer();
             if (LiveSessions.hasSession(player)) {
                 SessionData sessionData = LiveSessions.getData(player);
                 if (!sessionData.isTransitioning()) {
@@ -285,16 +288,20 @@ public class InputListener implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
         Player player = e.getPlayer();
-        if (LiveSessions.hasSession(player)) {
-            SessionData sessionData = LiveSessions.getData(player);
-            if (player.getOpenInventory() != null) {
-                Inventory inventory = player.getOpenInventory().getTopInventory();
-                if (sessionData instanceof IUpdateable && isMenuClick(inventory, player)) {
-                    ((IUpdateable) sessionData).updateContents(inventory);
-                }
-            }
-            LiveSessions.end(player);
+        if (!LiveSessions.hasSession(player)) {
+            return;
         }
+
+
+        SessionData sessionData = LiveSessions.getData(player);
+        if (player.getOpenInventory() != null) {
+            Inventory inventory = player.getOpenInventory().getTopInventory();
+            if (sessionData instanceof IUpdateable && isMenuClick(inventory, player)) {
+                ((IUpdateable) sessionData).updateContents(inventory);
+            }
+        }
+        LiveSessions.end(player);
+
     }
 
 

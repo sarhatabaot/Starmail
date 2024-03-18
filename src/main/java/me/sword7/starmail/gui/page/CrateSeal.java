@@ -15,8 +15,8 @@ public class CrateSeal extends Seal {
     @Override
     public Inventory populate(Inventory menu, Pack pack) {
         Crate crate = (Crate) pack;
-        ItemStack borderDot = crate.getBorderWood().getDot();
-        ItemStack dot = crate.getWood().getDot();
+        ItemStack borderDot = crate.getBorderWood().parseItem();
+        ItemStack dot = crate.getWood().parseItem();
         ItemStack seal = Icons.createSeal(new ItemStack(Material.STRING));
 
         for (int i = 0; i < 9; i++) {
@@ -43,7 +43,7 @@ public class CrateSeal extends Seal {
         return menu;
     }
 
-    private Set<Integer> sealSlots = new ImmutableSet.Builder<Integer>()
+    private final Set<Integer> sealSlots = new ImmutableSet.Builder<Integer>()
             .add(4)
             .add(13)
             .add(22)

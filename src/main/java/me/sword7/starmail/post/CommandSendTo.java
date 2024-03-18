@@ -1,10 +1,10 @@
 package me.sword7.starmail.post;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.pack.Pack;
 import me.sword7.starmail.sys.Permissions;
 import me.sword7.starmail.user.User;
 import me.sword7.starmail.user.UserCache;
-import me.sword7.starmail.util.X.XMaterial;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

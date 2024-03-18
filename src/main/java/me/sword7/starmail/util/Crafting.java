@@ -1,5 +1,7 @@
 package me.sword7.starmail.util;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.XTag;
 import me.sword7.starmail.StarMail;
 import me.sword7.starmail.box.Box;
 import me.sword7.starmail.box.BoxType;
@@ -8,10 +10,6 @@ import me.sword7.starmail.letter.LetterType;
 import me.sword7.starmail.pack.*;
 import me.sword7.starmail.sys.Permissions;
 import me.sword7.starmail.sys.Version;
-import me.sword7.starmail.util.X.XDye;
-import me.sword7.starmail.util.X.XMaterial;
-import me.sword7.starmail.util.X.XPlanks;
-import me.sword7.starmail.util.X.XWool;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.HumanEntity;
@@ -43,13 +41,19 @@ public class Crafting implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBookCopy(PrepareItemCraftEvent e) {
         ItemStack result = e.getInventory().getResult();
-        if (result != null) {
-            if (Letter.isLetter(result)) {
-                if (containsBook(e.getInventory().getMatrix())) e.getInventory().setResult(AIR);
-            } else if (Letter.bookMats.contains(result.getType())) {
-                if (containsLetter(e.getInventory().getMatrix())) e.getInventory().setResult(AIR);
-            }
+        if (result == null) {
+            return;
         }
+
+
+        if (Letter.isLetter(result)) {
+            if (containsBook(e.getInventory().getMatrix())) {
+                e.getInventory().setResult(AIR);
+            }
+        } else if (Letter.bookMats.contains(result.getType()) && (containsLetter(e.getInventory().getMatrix()))) {
+            e.getInventory().setResult(AIR);
+        }
+
 
     }
 
@@ -78,17 +82,20 @@ public class Crafting implements Listener {
             } else if (Pack.isPack(result)) {
                 Pack pack = Pack.getPack(result);
                 if (pack instanceof Crate) {
-                    if (!Permissions.canCraftCrate(viewers)) e.getInventory().setResult(AIR);
+                    if (!Permissions.canCraftCrate(viewers)) {
+                        e.getInventory().setResult(AIR);
+                    }
                 } else if (pack instanceof Chest) {
-                    if (!Permissions.canCraftChest(viewers)) e.getInventory().setResult(AIR);
+                    if (!Permissions.canCraftChest(viewers)) {
+                        e.getInventory().setResult(AIR);
+                    }
                 } else if (pack instanceof Gift) {
                     if (!Permissions.canCraftGift(viewers)) {
                         e.getInventory().setResult(AIR);
                     } else {
-                        if (Pack.getPack(result.getItemMeta()).getType() != PackType.ACACIA_CHEST.DEFAULT_GIFT) {
-                            if (!containsGift(e.getInventory().getMatrix())) {
-                                e.getInventory().setResult(AIR);
-                            }
+                        if (Pack.getPack(result.getItemMeta()).getType() != PackType.DEFAULT_GIFT && (!containsGift(e.getInventory().getMatrix()))) {
+                            e.getInventory().setResult(AIR);
+
                         }
                     }
                 } else {
@@ -110,13 +117,11 @@ public class Crafting implements Listener {
 
     private ItemStack convertGiftResult(CraftingInventory inventory, ItemStack result) {
         Box box = Box.getBox(result);
-        if (box != null) {
-            if (containsGift(inventory.getMatrix())) {
-                XDye xDye = box.getXDye();
-                for (PackType packType : PackType.craftableGifts) {
-                    if (((Gift) packType.getPack()).getXDye() == xDye) {
-                        return packType.getPack().getEmptyPack();
-                    }
+        if (box != null && (containsGift(inventory.getMatrix()))) {
+            XMaterial xDye = box.getXDye();
+            for (PackType packType : PackType.craftableGifts) {
+                if (((Gift) packType.getPack()).getXDye() == xDye) {
+                    return packType.getPack().getEmptyPack();
                 }
             }
         }
@@ -172,13 +177,16 @@ public class Crafting implements Listener {
 
         for (BoxType boxType : BoxType.craftable) {
             Box box = boxType.getBox();
-            ShapelessRecipe dyedBox = version.hasNamespaceKey() ? new ShapelessRecipe(new NamespacedKey(plugin, box.getName() + "_BOX"), box.getItemStack()) : new ShapelessRecipe(box.getItemStack());
-            XDye xDye = box.getXDye();
+            ShapelessRecipe dyedBox = version.hasNamespaceKey() ? new ShapelessRecipe(
+                    new NamespacedKey(plugin, box.getName() + "_BOX"),
+                    box.getItemStack()
+            ) : new ShapelessRecipe(box.getItemStack());
+            XMaterial xDye = box.getXDye();
             if (version.hasExtendedEnums()) {
                 dyedBox.addIngredient(xDye.parseMaterial());
                 dyedBox.addIngredient(XMaterial.PLAYER_HEAD.parseMaterial());
             } else {
-                dyedBox.addIngredient(new MaterialData(xDye.parseMaterial(), xDye.getByte()));
+                dyedBox.addIngredient(new MaterialData(xDye.parseMaterial(), xDye.getData()));
                 dyedBox.addIngredient(new MaterialData(XMaterial.PLAYER_HEAD.parseMaterial(), (byte) 3));
             }
             plugin.getServer().addRecipe(dyedBox);
@@ -194,8 +202,11 @@ public class Crafting implements Listener {
 
             for (LetterType letterType : LetterType.craftable) {
                 Letter letter = letterType.getLetter();
-                ShapelessRecipe dyedBox = version.hasNamespaceKey() ? new ShapelessRecipe(new NamespacedKey(plugin, letter.getName() + "_LETTER"), letter.getLetterAndQuill()) : new ShapelessRecipe(letter.getLetterAndQuill());
-                XDye xDye = letter.getXDye();
+                ShapelessRecipe dyedBox = version.hasNamespaceKey() ? new ShapelessRecipe(
+                        new NamespacedKey(plugin, letter.getName() + "_LETTER"),
+                        letter.getLetterAndQuill()
+                ) : new ShapelessRecipe(letter.getLetterAndQuill());
+                XMaterial xDye = letter.getXDye();
                 dyedBox.addIngredient(xDye.parseMaterial());
                 dyedBox.addIngredient(XMaterial.WRITABLE_BOOK.parseMaterial());
                 plugin.getServer().addRecipe(dyedBox);
@@ -204,17 +215,20 @@ public class Crafting implements Listener {
 
         for (PackType packType : PackType.craftableCrates) {
             Crate crate = (Crate) packType.getPack();
-            XPlanks planks = crate.getXPlanks();
+            XMaterial planks = crate.getXPlanks();
             if (planks.isSupported()) {
-                for (XWool wool : XWool.values()) {
-                    ShapedRecipe packRecipe = version.hasNamespaceKey() ? new ShapedRecipe(new NamespacedKey(plugin, crate.getName() + "_CRATE_" + wool.toString()), crate.getEmptyPack()) : new ShapedRecipe(crate.getEmptyPack());
+                for (XMaterial wool : XTag.WOOL.getValues()) {
+                    ShapedRecipe packRecipe = version.hasNamespaceKey() ? new ShapedRecipe(
+                            new NamespacedKey(plugin, crate.getName() + "_CRATE_" + wool.toString()),
+                            crate.getEmptyPack()
+                    ) : new ShapedRecipe(crate.getEmptyPack());
                     packRecipe.shape("www", "w*w", "www");
                     if (version.hasExtendedEnums()) {
                         packRecipe.setIngredient('w', planks.parseMaterial());
                         packRecipe.setIngredient('*', wool.parseMaterial());
                     } else {
-                        packRecipe.setIngredient('w', new MaterialData(XMaterial.OAK_PLANKS.parseMaterial(), planks.getByte()));
-                        packRecipe.setIngredient('*', new MaterialData(wool.parseMaterial(), wool.getByte()));
+                        packRecipe.setIngredient('w', new MaterialData(XMaterial.OAK_PLANKS.parseMaterial(), planks.getData()));
+                        packRecipe.setIngredient('*', new MaterialData(wool.parseMaterial(), wool.getData()));
                     }
                     plugin.getServer().addRecipe(packRecipe);
                 }
@@ -224,19 +238,22 @@ public class Crafting implements Listener {
 
         for (PackType packType : PackType.craftableChests) {
             Chest chest = (Chest) packType.getPack();
-            XPlanks planks = chest.getXPlanks();
+            XMaterial planks = chest.getXPlanks();
             if (planks.isSupported()) {
-                for (XWool wool : XWool.values()) {
-                    ShapedRecipe packRecipe = version.hasNamespaceKey() ? new ShapedRecipe(new NamespacedKey(plugin, chest.getName() + "_CHEST_" + wool.toString()), chest.getEmptyPack()) : new ShapedRecipe(chest.getEmptyPack());
+                for (XMaterial wool : XTag.WOOL.getValues()) {
+                    ShapedRecipe packRecipe = version.hasNamespaceKey() ? new ShapedRecipe(
+                            new NamespacedKey(plugin, chest.getName() + "_CHEST_" + wool.toString()),
+                            chest.getEmptyPack()
+                    ) : new ShapedRecipe(chest.getEmptyPack());
                     packRecipe.shape("---", "w*w", "www");
                     if (version.hasExtendedEnums()) {
                         packRecipe.setIngredient('-', planks.parseSlabMaterial());
                         packRecipe.setIngredient('w', planks.parseMaterial());
                         packRecipe.setIngredient('*', wool.parseMaterial());
                     } else {
-                        packRecipe.setIngredient('-', new MaterialData(planks.parseSlabMaterial(), planks.getByte()));
-                        packRecipe.setIngredient('w', new MaterialData(XMaterial.OAK_PLANKS.parseMaterial(), planks.getByte()));
-                        packRecipe.setIngredient('*', new MaterialData(wool.parseMaterial(), wool.getByte()));
+                        packRecipe.setIngredient('-', new MaterialData(planks.parseSlabMaterial(), planks.getData()));
+                        packRecipe.setIngredient('w', new MaterialData(XMaterial.OAK_PLANKS.parseMaterial(), planks.getData()));
+                        packRecipe.setIngredient('*', new MaterialData(wool.parseMaterial(), wool.getData()));
                     }
                     plugin.getServer().addRecipe(packRecipe);
                 }
@@ -245,14 +262,15 @@ public class Crafting implements Listener {
 
         final ItemStack defaultGiftItemStack = PackType.DEFAULT_GIFT.getPack().getEmptyPack();
 
-        for (XWool wool : XWool.values()) {
-            ShapedRecipe defaultGift = version.hasNamespaceKey() ? new ShapedRecipe(new NamespacedKey(plugin, "DEFAULT_GIFT_" + wool.toString()), defaultGiftItemStack) : new ShapedRecipe(defaultGiftItemStack);
+        for (XMaterial wool : XTag.WOOL.getValues()) {
+            ShapedRecipe defaultGift = version.hasNamespaceKey() ? new ShapedRecipe(new NamespacedKey(plugin, "DEFAULT_GIFT_" + wool.toString()), defaultGiftItemStack) : new ShapedRecipe(
+                    defaultGiftItemStack);
             defaultGift.shape("---", "-*-", "---");
             defaultGift.setIngredient('-', XMaterial.PAPER.parseMaterial());
             if (version.hasExtendedEnums()) {
                 defaultGift.setIngredient('*', wool.parseMaterial());
             } else {
-                defaultGift.setIngredient('*', new MaterialData(wool.parseMaterial(), wool.getByte()));
+                defaultGift.setIngredient('*', new MaterialData(wool.parseMaterial(), wool.getData()));
             }
             plugin.getServer().addRecipe(defaultGift);
         }

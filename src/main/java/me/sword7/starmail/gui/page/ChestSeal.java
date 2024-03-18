@@ -1,9 +1,9 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.gui.Icons;
 import me.sword7.starmail.pack.Chest;
 import me.sword7.starmail.pack.Pack;
-import me.sword7.starmail.util.X.XGlass;
 import com.google.common.collect.ImmutableSet;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -15,9 +15,9 @@ public class ChestSeal extends Seal {
     @Override
     public Inventory populate(Inventory menu, Pack pack) {
         Chest chest = (Chest) pack;
-        ItemStack dot = chest.getWood().getDot();
-        ItemStack seal = Icons.createSeal(XGlass.WHITE.getItemStack());
-        ItemStack seem = XGlass.BLACK.getDot();
+        ItemStack dot = chest.getWood().parseItem();
+        ItemStack seal = Icons.createSeal(XMaterial.WHITE_STAINED_GLASS_PANE.parseItem());
+        ItemStack seem = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();
 
         for (int i = 0; i < 9; i++) {
             menu.setItem(i, dot);

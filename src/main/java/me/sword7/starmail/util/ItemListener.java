@@ -1,5 +1,6 @@
 package me.sword7.starmail.util;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.StarMail;
 import me.sword7.starmail.box.Box;
 import me.sword7.starmail.box.BoxCache;
@@ -9,7 +10,6 @@ import me.sword7.starmail.pack.Pack;
 import me.sword7.starmail.postbox.Postbox;
 import me.sword7.starmail.postbox.PostboxCache;
 import me.sword7.starmail.sys.Version;
-import me.sword7.starmail.util.X.XMaterial;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;

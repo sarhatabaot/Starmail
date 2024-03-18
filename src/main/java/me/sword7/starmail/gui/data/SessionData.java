@@ -1,5 +1,6 @@
 package me.sword7.starmail.gui.data;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.gui.LiveSessions;
 import me.sword7.starmail.gui.MenuUtil;
 import me.sword7.starmail.gui.page.IPageContents;
@@ -7,7 +8,6 @@ import me.sword7.starmail.gui.page.Page;
 import me.sword7.starmail.gui.page.PageType;
 import me.sword7.starmail.sys.Version;
 import me.sword7.starmail.util.Scheduler;
-import me.sword7.starmail.util.X.XGlass;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -20,8 +20,8 @@ import java.util.UUID;
 
 public class SessionData {
 
-    protected static String titleBase = ChatColor.DARK_GRAY.toString() + ChatColor.BOLD.toString();
-    private static final XGlass DEFAULT = XGlass.BLACK;
+    protected static String titleBase = ChatColor.DARK_GRAY.toString() + ChatColor.BOLD;
+    private static final XMaterial DEFAULT = XMaterial.BLACK_STAINED_GLASS_PANE;
 
     private boolean clicking = false;
     private UUID cID;
@@ -32,7 +32,7 @@ public class SessionData {
     protected Page current;
     private boolean transitioning = false;
     private int pageOffsetY;
-    private XGlass theme;
+    private XMaterial theme;
 
     public SessionData(Page start, Player player) {
         this.player = player;
@@ -53,11 +53,11 @@ public class SessionData {
         player.openInventory(current.getInventory(this));
     }
 
-    public XGlass getTheme() {
+    public XMaterial getTheme() {
         return theme;
     }
 
-    public void setTheme(XGlass theme) {
+    public void setTheme(XMaterial theme) {
         this.theme = theme;
     }
 

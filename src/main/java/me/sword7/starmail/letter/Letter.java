@@ -1,11 +1,10 @@
 package me.sword7.starmail.letter;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.sys.Language;
 import me.sword7.starmail.sys.Version;
 import me.sword7.starmail.sys.config.ItemsConfig;
 import me.sword7.starmail.util.MailColor;
-import me.sword7.starmail.util.X.XDye;
-import me.sword7.starmail.util.X.XMaterial;
 import com.google.common.collect.ImmutableSet;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -42,7 +41,7 @@ public class Letter {
     private LetterType type;
     private String name;
     private int modelData;
-    private XDye xDye;
+    private XMaterial xDye;
     private ItemStack quillStack;
 
     public Letter(LetterType type, MailColor mailColor, int modelData) {
@@ -82,7 +81,7 @@ public class Letter {
         return modelData;
     }
 
-    public XDye getXDye() {
+    public XMaterial getXDye() {
         return xDye;
     }
 

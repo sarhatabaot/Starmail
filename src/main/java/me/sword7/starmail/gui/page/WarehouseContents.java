@@ -1,5 +1,6 @@
 package me.sword7.starmail.gui.page;
 
+import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.gui.*;
 import me.sword7.starmail.gui.data.SessionData;
 import me.sword7.starmail.gui.data.WarehouseData;
@@ -7,8 +8,6 @@ import me.sword7.starmail.pack.Pack;
 import me.sword7.starmail.pack.UpdateResult;
 import me.sword7.starmail.pack.tracking.TrackingCache;
 import me.sword7.starmail.sys.Language;
-import me.sword7.starmail.util.X.XGlass;
-import me.sword7.starmail.util.X.XMaterial;
 import me.sword7.starmail.warehouse.WarehouseCache;
 import me.sword7.starmail.warehouse.WarehouseEntry;
 import com.google.common.collect.ImmutableList;
@@ -51,7 +50,7 @@ public class WarehouseContents extends IUpdater {
             menu.setItem(41, Icons.createIcon(XMaterial.BARRIER.parseMaterial(), ChatColor.RED.toString() + Language.LABEL_EXPIRED));
         }
 
-        ItemStack blackStack = XGlass.BLACK.getDot();
+        ItemStack blackStack = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();
         menu.setItem(38, blackStack);
         menu.setItem(39, Icons.CLOSE);
         menu.setItem(40, blackStack);

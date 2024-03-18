@@ -12,10 +12,10 @@ import java.util.UUID;
 
 public class SealedData extends PackData {
 
-    private ItemStack[] contents;
-    private UUID trackingNo;
+    private final ItemStack[] contents;
+    private final UUID trackingNo;
     private boolean opened = false;
-    private boolean expired;
+    private final boolean expired;
 
     public SealedData(Player player, Page home, UUID trackingNo, ItemStack[] contents, Pack pack, int slot, boolean expired) {
         super(player, home, slot, pack);

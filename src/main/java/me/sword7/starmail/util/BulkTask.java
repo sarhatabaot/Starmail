@@ -7,16 +7,16 @@ public abstract class BulkTask extends BukkitRunnable {
 
     private State state;
     private int extensions = 0;
-    private int duration;
+    private final int duration;
     private int countdown;
-    private int maxExtensions;
+    private final int maxExtensions;
 
     public BulkTask(int duration, int maxExtensions) {
         this.state = State.RESTING;
         this.duration = duration;
         this.countdown = duration;
         this.maxExtensions = maxExtensions;
-        runTaskTimer(StarMail.getPlugin(), 1 * 20, 1 * 20);
+        runTaskTimer(StarMail.getPlugin(), 20, 20);
     }
 
     public BulkTask(int duration, int maxExtensions, State start) {
@@ -24,7 +24,7 @@ public abstract class BulkTask extends BukkitRunnable {
         this.duration = duration;
         this.countdown = duration;
         this.maxExtensions = maxExtensions;
-        runTaskTimer(StarMail.getPlugin(), 1 * 20, 1 * 20);
+        runTaskTimer(StarMail.getPlugin(), 20, 20);
     }
 
     @Override

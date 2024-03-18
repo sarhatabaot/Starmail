@@ -17,18 +17,18 @@ import java.util.UUID;
 
 public class ItemsConfig {
 
-    private static File file = new File("plugins/StarMail", "items.yml");
-    private static FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+    private static final File file = new File("plugins/StarMail", "items.yml");
+    private static final FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
-    private static List<Pack> customPacks = new ArrayList<>();
-    private static List<Box> customBoxes = new ArrayList<>();
-    private static List<Letter> customLetters = new ArrayList<>();
+    private static final List<Pack> customPacks = new ArrayList<>();
+    private static final List<Box> customBoxes = new ArrayList<>();
+    private static final List<Letter> customLetters = new ArrayList<>();
 
-    private static String cratesKey = "Crates";
-    private static String chestsKey = "Chests";
-    private static String giftsKey = "Gifts";
-    private static String lettersKey = "Letters";
-    private static String boxesKey = "Boxes";
+    private static final String cratesKey = "Crates";
+    private static final String chestsKey = "Chests";
+    private static final String giftsKey = "Gifts";
+    private static final String lettersKey = "Letters";
+    private static final String boxesKey = "Boxes";
 
     public ItemsConfig() {
         load();

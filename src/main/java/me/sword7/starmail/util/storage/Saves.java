@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class Saves<T, V extends ICopyable<V>> extends BulkTask {
 
-    private Map<T, V> unsaved = new HashMap<>();
-    private Map<T, V> beingSaved = new HashMap<>();
-    private Storage<T, V> storage;
+    private final Map<T, V> unsaved = new HashMap<>();
+    private final Map<T, V> beingSaved = new HashMap<>();
+    private final Storage<T, V> storage;
     private Runnable onSaveFinalized = () -> {
     };
 
@@ -62,11 +62,8 @@ public class Saves<T, V extends ICopyable<V>> extends BulkTask {
     public boolean containsKey(T key) {
         if (unsaved.containsKey(key)) {
             return true;
-        } else if (beingSaved.containsKey(key)) {
-            return true;
-        } else {
-            return false;
-        }
+        } else
+            return beingSaved.containsKey(key);
     }
 
     public V get(T key) {

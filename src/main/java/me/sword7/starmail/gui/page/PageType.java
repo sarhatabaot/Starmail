@@ -24,7 +24,7 @@ public enum PageType {
     F_MAILBOX(6, new FMailbox(), null),
     ;
 
-    private Page page;
+    private final Page page;
 
     PageType(int rows, IPageContents contents, PageType previous) {
         this.page = new Page(this, rows, "", contents, previous);

@@ -39,7 +39,7 @@ public class ChestSeal extends Seal {
         return menu;
     }
 
-    private Set<Integer> sealSlots = new ImmutableSet.Builder<Integer>()
+    private final Set<Integer> sealSlots = new ImmutableSet.Builder<Integer>()
             .add(13)
             .add(22)
             .build();

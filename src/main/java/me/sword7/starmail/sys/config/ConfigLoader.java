@@ -12,13 +12,13 @@ public class ConfigLoader {
 
     private static final String pluginFolder = "StarMail";
 
-    private static ImmutableList<String> configs = new ImmutableList.Builder<String>()
+    private static final ImmutableList<String> configs = new ImmutableList.Builder<String>()
             .add("config")
             .add("integrations")
             .add("items")
             .build();
 
-    private static ImmutableList<String> languages = new ImmutableList.Builder<String>()
+    private static final ImmutableList<String> languages = new ImmutableList.Builder<String>()
             .add("en")
             .add("pl")
             .add("ru")

@@ -157,8 +157,8 @@ public enum Language {
 
     ;
 
-    private static File file = new File("plugins/StarMail/Locale", PluginConfig.getLanguageFile() + ".yml");
-    private static FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+    private static final File file = new File("plugins/StarMail/Locale", PluginConfig.getLanguageFile() + ".yml");
+    private static final FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
     public static void load() {
         if (file.exists()) {
@@ -180,7 +180,7 @@ public enum Language {
 
     public class MessageSetting {
 
-        private String label;
+        private final String label;
         private String message;
 
         public MessageSetting(String label, String message) {
@@ -203,7 +203,7 @@ public enum Language {
     }
 
 
-    private MessageSetting messageSetting;
+    private final MessageSetting messageSetting;
 
     Language(String messageSetting, String messageDefault) {
         this.messageSetting = new MessageSetting(messageSetting, messageDefault);

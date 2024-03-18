@@ -92,8 +92,8 @@ public class WarehouseContents extends IUpdater {
         }
     }
 
-    private List<Integer> insertableList = new ArrayList<>();
-    private Set<Integer> insertableSet = new HashSet<>();
+    private final List<Integer> insertableList = new ArrayList<>();
+    private final Set<Integer> insertableSet = new HashSet<>();
 
     private void buildInsertables() {
         for (int i = 10; i < 35; i++) {
@@ -114,7 +114,7 @@ public class WarehouseContents extends IUpdater {
         return insertableList;
     }
 
-    private List<Integer> animationSlots = new ImmutableList.Builder<Integer>()
+    private final List<Integer> animationSlots = new ImmutableList.Builder<Integer>()
             .add(1).add(2).add(3).add(5).add(6).add(7)
             .add(9).add(17)
             .add(18).add(26)

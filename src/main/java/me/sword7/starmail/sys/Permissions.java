@@ -10,29 +10,29 @@ import java.util.Collection;
 
 public class Permissions {
 
-    private static String GLOBAL = "mail.*";
+    private static final String GLOBAL = "mail.*";
 
-    private static String CRAFT = "mail.craft.*";
-    private static String CRAFT_LETTER = "mail.craft.letter";
-    private static String CRAFT_PACKAGE = "mail.craft.package.*";
-    private static String CRAFT_CRATE = "mail.craft.package.crate";
-    private static String CRAFT_CHEST = "mail.craft.package.chest";
-    private static String CRAFT_GIFT = "mail.craft.package.gift";
-    private static String CRAFT_BOX = "mail.craft.box";
+    private static final String CRAFT = "mail.craft.*";
+    private static final String CRAFT_LETTER = "mail.craft.letter";
+    private static final String CRAFT_PACKAGE = "mail.craft.package.*";
+    private static final String CRAFT_CRATE = "mail.craft.package.crate";
+    private static final String CRAFT_CHEST = "mail.craft.package.chest";
+    private static final String CRAFT_GIFT = "mail.craft.package.gift";
+    private static final String CRAFT_BOX = "mail.craft.box";
 
-    private static String WAREHOUSE = "mail.warehouse";
-    private static String LOOT = "mail.loot";
-    private static String CUSTOM = "mail.custom";
-    private static String ACCESS = "mail.access";
+    private static final String WAREHOUSE = "mail.warehouse";
+    private static final String LOOT = "mail.loot";
+    private static final String CUSTOM = "mail.custom";
+    private static final String ACCESS = "mail.access";
 
-    private static String EMAIL = "mail.email.*";
-    private static String E_SEND = "mail.email.send";
-    private static String E_BOX = "mail.email.box";
+    private static final String EMAIL = "mail.email.*";
+    private static final String E_SEND = "mail.email.send";
+    private static final String E_BOX = "mail.email.box";
 
-    private static String BLOCK = "mail.block.*";
-    private static String BLOCK_MAILBOX = "mail.block.mailbox";
-    private static String BLOCK_GLOBALBOX = "mail.block.globalbox";
-    private static String BLOCK_POSTBOX = "mail.block.postbox";
+    private static final String BLOCK = "mail.block.*";
+    private static final String BLOCK_MAILBOX = "mail.block.mailbox";
+    private static final String BLOCK_GLOBALBOX = "mail.block.globalbox";
+    private static final String BLOCK_POSTBOX = "mail.block.postbox";
 
     public static boolean canCraftLetter(Collection<HumanEntity> senders) {
         return canCraft(senders, CRAFT_LETTER);

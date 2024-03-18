@@ -13,11 +13,11 @@ import org.bukkit.inventory.ItemStack;
 
 public class Chest extends Pack {
 
-    private static Sound openSound = XSound.BLOCK_CHEST_OPEN.parseSound();
-    private static Sound closeSound = XSound.BLOCK_CHEST_CLOSE.parseSound();
+    private static final Sound openSound = XSound.BLOCK_CHEST_OPEN.parseSound();
+    private static final Sound closeSound = XSound.BLOCK_CHEST_CLOSE.parseSound();
 
     private XMaterial xPlanks;
-    private XMaterial wood;
+    private final XMaterial wood;
 
     public Chest(PackType type, MailWood mailWood, String profileID, String data) {
         super(type, type.toString(), Language.LABEL_WOODEN_CHEST.fromWood(mailWood.getLanguage()), profileID, data);
@@ -61,8 +61,8 @@ public class Chest extends Pack {
         return new ItemStack(Material.TRIPWIRE_HOOK);
     }
 
-    private static Sound seal = Version.current.value >= 109 ? XSound.BLOCK_IRON_TRAPDOOR_OPEN.parseSound() : XSound.BLOCK_PISTON_EXTEND.parseSound();
-    private static Sound unseal = Version.current.value >= 109 ? XSound.BLOCK_IRON_TRAPDOOR_OPEN.parseSound() : XSound.BLOCK_PISTON_CONTRACT.parseSound();
+    private static final Sound seal = Version.current.value >= 109 ? XSound.BLOCK_IRON_TRAPDOOR_OPEN.parseSound() : XSound.BLOCK_PISTON_EXTEND.parseSound();
+    private static final Sound unseal = Version.current.value >= 109 ? XSound.BLOCK_IRON_TRAPDOOR_OPEN.parseSound() : XSound.BLOCK_PISTON_CONTRACT.parseSound();
 
     @Override
     public void playSealSound(Player player) {

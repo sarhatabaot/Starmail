@@ -49,7 +49,7 @@ public enum Key {
     LETTERS("ABC", "51305557-0248-4a5c-9a99-6493bc4fa309", "ewogICJ0aW1lc3RhbXAiIDogMTU5Njk5NTk3OTk0MSwKICAicHJvZmlsZUlkIiA6ICI5Y2MzODY4ZjM5YzA0YmFiOWNlYzI5M2RhZWZjZjIzNiIsCiAgInByb2ZpbGVOYW1lIiA6ICJMb3JkTWlsY28iLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjdhNjI5OTNjMTUxMWU5OWJkOTM2YmNmNjUzNjFhODAzMmJkM2MxNDBjYjYxMmFlMmE2OWM1NTdlYWZhZTU4NyIKICAgIH0KICB9Cn0="),
     ;
 
-    private ItemStack itemStack;
+    private final ItemStack itemStack;
 
     Key(String profile, String texture) {
         this.itemStack = Head.createHeadItem(texture, UUID.fromString(profile), this.toString().replace("NUM_", ""));

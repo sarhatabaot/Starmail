@@ -21,11 +21,11 @@ import static me.sword7.starmail.sys.Language.LORE_ID_GLOBAL_BOX;
 
 public class Box {
 
-    private static Sound openSound = XSound.BLOCK_IRON_DOOR_OPEN.isSupported() ? XSound.BLOCK_IRON_DOOR_OPEN.parseSound() : XSound.BLOCK_WOODEN_DOOR_OPEN.parseSound();
-    private static Sound closeSound = XSound.BLOCK_IRON_DOOR_CLOSE.isSupported() ? XSound.BLOCK_IRON_DOOR_CLOSE.parseSound() : XSound.BLOCK_WOODEN_DOOR_CLOSE.parseSound();
+    private static final Sound openSound = XSound.BLOCK_IRON_DOOR_OPEN.isSupported() ? XSound.BLOCK_IRON_DOOR_OPEN.parseSound() : XSound.BLOCK_WOODEN_DOOR_OPEN.parseSound();
+    private static final Sound closeSound = XSound.BLOCK_IRON_DOOR_CLOSE.isSupported() ? XSound.BLOCK_IRON_DOOR_CLOSE.parseSound() : XSound.BLOCK_WOODEN_DOOR_CLOSE.parseSound();
 
-    private static Map<UUID, Box> iDToBox = new HashMap<>();
-    private static Map<String, Box> nameToBox = new HashMap<>();
+    private static final Map<UUID, Box> iDToBox = new HashMap<>();
+    private static final Map<String, Box> nameToBox = new HashMap<>();
 
     public static void init() {
         List<Box> boxes = new ArrayList<>();
@@ -42,17 +42,17 @@ public class Box {
         boxes.clear();
     }
 
-    private BoxType type;
-    private String displayName;
-    private String name;
-    private XMaterial glass;
-    private XMaterial highlight;
-    private XMaterial flag;
-    private ItemStack itemStack;
-    private UUID profileID;
-    private ChatColor color;
+    private final BoxType type;
+    private final String displayName;
+    private final String name;
+    private final XMaterial glass;
+    private final XMaterial highlight;
+    private final XMaterial flag;
+    private final ItemStack itemStack;
+    private final UUID profileID;
+    private final ChatColor color;
     private XMaterial xDye;
-    private String symbol;
+    private final String symbol;
 
     public Box(BoxType type, String name, String displayName, MailColor color, XMaterial highlight, XMaterial flag, UUID profileID, String data) {
         this.type = type;
@@ -93,7 +93,7 @@ public class Box {
         return itemStack.clone();
     }
 
-    private static String GLOBAL_LORE = ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_GLOBAL_BOX;
+    private static final String GLOBAL_LORE = ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_GLOBAL_BOX;
 
     public ItemStack getGlobalItemStack() {
         ItemStack itemStack = this.itemStack.clone();

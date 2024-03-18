@@ -9,9 +9,9 @@ import static me.sword7.starmail.sys.Language.LABEL_PAGE;
 
 public class InfoList {
 
-    private String title;
-    private List<String> items;
-    private int pageItemCount;
+    private final String title;
+    private final List<String> items;
+    private final int pageItemCount;
 
     public InfoList(String title, List<String> items, int pageItemCount) {
         this.title = title;

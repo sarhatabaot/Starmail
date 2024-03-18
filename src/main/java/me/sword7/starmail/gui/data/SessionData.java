@@ -28,7 +28,7 @@ public class SessionData {
     private boolean updating = false;
     private UUID uID;
     protected Player player;
-    private UUID ID = UUID.randomUUID();
+    private final UUID ID = UUID.randomUUID();
     protected Page current;
     private boolean transitioning = false;
     private int pageOffsetY;

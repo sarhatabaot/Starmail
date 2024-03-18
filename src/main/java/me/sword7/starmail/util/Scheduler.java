@@ -7,8 +7,8 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 public class Scheduler {
 
-    private static BukkitScheduler scheduler = Bukkit.getScheduler();
-    private static Plugin plugin = StarMail.getPlugin();
+    private static final BukkitScheduler scheduler = Bukkit.getScheduler();
+    private static final Plugin plugin = StarMail.getPlugin();
 
     public static void run(Runnable r) {
         scheduler.runTask(plugin, r);

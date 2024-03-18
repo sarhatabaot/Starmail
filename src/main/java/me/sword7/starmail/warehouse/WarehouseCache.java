@@ -10,10 +10,10 @@ import java.util.*;
 
 public class WarehouseCache {
 
-    private static WarehouseFlatFile warehouseFlatFile = new WarehouseFlatFile();
-    private static Map<String, WarehouseEntry> entries = new HashMap<>();
-    private static Map<String, WarehouseEntry> unsavedData = new HashMap<>();
-    private static Set<UUID> warehousePacks = new HashSet<>();
+    private static final WarehouseFlatFile warehouseFlatFile = new WarehouseFlatFile();
+    private static final Map<String, WarehouseEntry> entries = new HashMap<>();
+    private static final Map<String, WarehouseEntry> unsavedData = new HashMap<>();
+    private static final Set<UUID> warehousePacks = new HashSet<>();
 
     public WarehouseCache() {
         load();

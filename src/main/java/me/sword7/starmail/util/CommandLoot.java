@@ -16,7 +16,7 @@ import static me.sword7.starmail.sys.Language.WARN_UNKNOWN_TYPE;
 
 public class CommandLoot implements CommandExecutor {
 
-    private ILootType lootType;
+    private final ILootType lootType;
 
     public CommandLoot(ILootType lootType) {
         this.lootType = lootType;

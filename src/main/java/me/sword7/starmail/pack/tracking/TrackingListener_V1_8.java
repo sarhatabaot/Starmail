@@ -18,9 +18,7 @@ public class TrackingListener_V1_8 implements Listener {
     @EventHandler
     public void onPickup(PlayerPickupItemEvent e) {
         UUID itemID = e.getItem().getUniqueId();
-        if (TrackingRunnable.sealedItems.contains(itemID)) {
-            TrackingRunnable.sealedItems.remove(itemID);
-        }
+        TrackingRunnable.sealedItems.remove(itemID);
     }
 
 

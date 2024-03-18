@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 
 public class WarehouseData extends SessionData {
 
-    private String type;
-    private WarehouseEntry entry;
+    private final String type;
+    private final WarehouseEntry entry;
 
     public WarehouseData(Player player, String type, WarehouseEntry entry) {
         super(PageType.WAREHOUSE_HOME.getPage(), player);

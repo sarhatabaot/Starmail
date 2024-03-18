@@ -15,8 +15,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class PostboxSendAnimation extends BukkitRunnable {
 
-    private static ItemStack arrow = AnimationUtil.getArrow();
-    private static ItemStack arrowHighlight = AnimationUtil.getArrowHighlight();
+    private static final ItemStack arrow = AnimationUtil.getArrow();
+    private static final ItemStack arrowHighlight = AnimationUtil.getArrowHighlight();
 
     private final PostData postData;
     private final Player player;

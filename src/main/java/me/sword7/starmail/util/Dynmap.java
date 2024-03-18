@@ -23,12 +23,12 @@ import static me.sword7.starmail.sys.Language.LABEL_POSTBOX;
 
 public class Dynmap {
 
-    private Map<LocationParts, Marker> locationToMarker = new HashMap<>();
-    private Map<UUID, MarkerIcon> boxToIcon = new HashMap<>();
-    private Map<UUID, MarkerIcon> postboxToIcon = new HashMap<>();
+    private final Map<LocationParts, Marker> locationToMarker = new HashMap<>();
+    private final Map<UUID, MarkerIcon> boxToIcon = new HashMap<>();
+    private final Map<UUID, MarkerIcon> postboxToIcon = new HashMap<>();
 
-    private MarkerAPI markerAPI;
-    private DynmapCommonAPI dynmapAPI;
+    private final MarkerAPI markerAPI;
+    private final DynmapCommonAPI dynmapAPI;
     private MarkerIcon defaultMailIcon;
     private MarkerIcon defaultPostIcon;
     private MarkerSet mailboxIconSet;

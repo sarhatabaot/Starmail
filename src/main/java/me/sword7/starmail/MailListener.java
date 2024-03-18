@@ -95,8 +95,8 @@ public class MailListener implements Listener {
         }
     }
 
-    private boolean oneHanded = Version.current.hasOneHand();
-    private Sound batWings = XSound.ENTITY_BAT_TAKEOFF.parseSound();
+    private final boolean oneHanded = Version.current.hasOneHand();
+    private final Sound batWings = XSound.ENTITY_BAT_TAKEOFF.parseSound();
 
     @EventHandler
     public void onClick(PlayerInteractEvent e) {
@@ -246,7 +246,7 @@ public class MailListener implements Listener {
 
     }
 
-    private Set<UUID> noVisualFixPlayers = new HashSet<>();
+    private final Set<UUID> noVisualFixPlayers = new HashSet<>();
 
     private void sendInstant(Player player, User mailSender, User boxOwner, ItemStack mailItem) {
         player.sendMessage(ChatColor.YELLOW + SUCCESS_SENT.fromPlayer(boxOwner.getName()));

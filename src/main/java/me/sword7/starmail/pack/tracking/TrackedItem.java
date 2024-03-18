@@ -8,7 +8,7 @@ import java.time.Instant;
 public class TrackedItem {
 
     private ItemStack[] itemStacks;
-    private Timestamp date;
+    private final Timestamp date;
 
     public TrackedItem(ItemStack[] itemStacks) {
         this.itemStacks = itemStacks;

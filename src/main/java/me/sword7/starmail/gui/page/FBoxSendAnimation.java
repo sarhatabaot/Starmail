@@ -13,9 +13,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class FBoxSendAnimation extends BukkitRunnable {
 
-    private static ItemStack arrow = AnimationUtil.getArrow();
-    private static ItemStack arrowHighlight = AnimationUtil.getArrowHighlight();
-    private static ItemStack voidStack = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();
+    private static final ItemStack arrow = AnimationUtil.getArrow();
+    private static final ItemStack arrowHighlight = AnimationUtil.getArrowHighlight();
+    private static final ItemStack voidStack = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();
 
     private final FBoxData fBoxData;
     private final Player player;

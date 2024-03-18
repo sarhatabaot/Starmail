@@ -9,7 +9,7 @@ import static me.sword7.starmail.sys.Language.CONSOLE_PLUGIN_DETECT;
 
 public class PluginBase {
 
-    private static String dynmapNameSpace = "dynmap";
+    private static final String dynmapNameSpace = "dynmap";
 
     private static Dynmap dynmap;
     private static boolean usingDynmap = false;

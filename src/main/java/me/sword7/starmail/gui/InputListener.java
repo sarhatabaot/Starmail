@@ -47,7 +47,7 @@ public class InputListener implements Listener {
                 int slot = e.getSlot();
                 Page page = sessionData.getCurrent();
                 boolean isInsertablePage = page.getContents() instanceof IInsertable;
-                boolean isInsertableSlot = isInsertablePage ? ((IInsertable) page.getContents()).isInsertable(slot) : false;
+                boolean isInsertableSlot = isInsertablePage && ((IInsertable) page.getContents()).isInsertable(slot);
                 boolean isGUIClick = player.getOpenInventory().getTopInventory().equals(inventory);
                 ClickType clickType = e.getClick();
                 int packItemSlot = sessionData instanceof PackData ? ((PackData) sessionData).getPackSlot() : -99;

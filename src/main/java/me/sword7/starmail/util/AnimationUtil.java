@@ -12,8 +12,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class AnimationUtil {
 
-    private static ItemStack arrow = Icons.createIcon(Material.ARROW, ChatColor.GREEN.toString() + ChatColor.BOLD + Symbol.RIGHT);
-    private static ItemStack arrowHighlight = buildHighlightArrow();
+    private static final ItemStack arrow = Icons.createIcon(Material.ARROW, ChatColor.GREEN.toString() + ChatColor.BOLD + Symbol.RIGHT);
+    private static final ItemStack arrowHighlight = buildHighlightArrow();
     private static final Sound batWings = XSound.ENTITY_BAT_TAKEOFF.parseSound();
 
     private static ItemStack buildHighlightArrow() {

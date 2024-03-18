@@ -13,8 +13,8 @@ import java.util.*;
 
 public class Postbox {
 
-    private static Map<UUID, Postbox> iDToPostbox = new HashMap<>();
-    private static Map<String, Postbox> nameToPostbox = new HashMap<>();
+    private static final Map<UUID, Postbox> iDToPostbox = new HashMap<>();
+    private static final Map<String, Postbox> nameToPostbox = new HashMap<>();
 
     public static void init() {
         List<Postbox> postboxes = new ArrayList<>();
@@ -32,11 +32,11 @@ public class Postbox {
         postboxes.clear();
     }
 
-    private PostboxType type;
-    private String name;
-    private ItemStack itemStack;
-    private UUID profileID;
-    private XMaterial xGlass;
+    private final PostboxType type;
+    private final String name;
+    private final ItemStack itemStack;
+    private final UUID profileID;
+    private final XMaterial xGlass;
 
     public Postbox(PostboxType type, String name, XMaterial xGlass, UUID profileID, String data) {
         this.type = type;

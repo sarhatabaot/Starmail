@@ -10,13 +10,13 @@ import org.bukkit.inventory.Inventory;
 
 public class Page {
 
-    private static String titleBase = ChatColor.DARK_GRAY.toString() + ChatColor.BOLD.toString();
+    private static final String titleBase = ChatColor.DARK_GRAY.toString() + ChatColor.BOLD;
 
     private String title;
-    private PageType type;
-    private int rows;
-    private IPageContents contents;
-    private PageType previousPage;
+    private final PageType type;
+    private final int rows;
+    private final IPageContents contents;
+    private final PageType previousPage;
 
     public Page(PageType type, int rows, String title, IPageContents contents, PageType previousPage) {
         this.type = type;

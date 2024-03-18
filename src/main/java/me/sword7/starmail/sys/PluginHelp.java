@@ -7,7 +7,7 @@ import static me.sword7.starmail.sys.Language.*;
 
 public class PluginHelp {
 
-    private static boolean hasLetter = Version.current.hasLetter();
+    private static final boolean hasLetter = Version.current.hasLetter();
 
     public static void sendHelp(CommandSender sender) {
 

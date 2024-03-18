@@ -18,16 +18,16 @@ import java.util.*;
 
 public class BoxCache implements Listener {
 
-    private static List<LocationParts> unloadedLocations = new ArrayList<>();
-    private static List<LocationParts> requestedBreaks = new ArrayList<>();
+    private static final List<LocationParts> unloadedLocations = new ArrayList<>();
+    private static final List<LocationParts> requestedBreaks = new ArrayList<>();
 
-    private static Set<UUID> placedBoxPlayers = new HashSet<>();
-    private static Map<LocationParts, PlacedBox> locationToBox = new HashMap<>();
-    private static Dynmap dynmap = PluginBase.getDynmap();
-    private static boolean usingDynmap = PluginBase.isUsingDynmap();
+    private static final Set<UUID> placedBoxPlayers = new HashSet<>();
+    private static final Map<LocationParts, PlacedBox> locationToBox = new HashMap<>();
+    private static final Dynmap dynmap = PluginBase.getDynmap();
+    private static final boolean usingDynmap = PluginBase.isUsingDynmap();
 
-    private static BoxFlatFile boxFlatFile = new BoxFlatFile();
-    private static Saves<LocationParts, PlacedBox> saves = new Saves<>(boxFlatFile);
+    private static final BoxFlatFile boxFlatFile = new BoxFlatFile();
+    private static final Saves<LocationParts, PlacedBox> saves = new Saves<>(boxFlatFile);
 
     public BoxCache() {
         Plugin plugin = StarMail.getPlugin();

@@ -20,7 +20,7 @@ import java.util.UUID;
 
 public class Head {
 
-    private static int currentValue = Version.current.value;
+    private static final int currentValue = Version.current.value;
 
     public static ItemStack createHeadItem(String data, UUID profileID, String name) {
         ItemStack head = Head.getHead(data, "Head", profileID);
@@ -30,7 +30,7 @@ public class Head {
         return head;
     }
 
-    private static Map<UUID, ItemStack> playerToHead = new HashMap<>();
+    private static final Map<UUID, ItemStack> playerToHead = new HashMap<>();
 
     public static ItemStack getPlayerHead(User user) {
         UUID userID = user.getID();

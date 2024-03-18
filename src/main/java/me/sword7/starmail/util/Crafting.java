@@ -28,9 +28,9 @@ import java.util.Collection;
 
 public class Crafting implements Listener {
 
-    private ItemStack AIR = new ItemStack(Material.AIR);
-    private Version version = Version.current;
-    private boolean letterSupported = version.hasLetter();
+    private final ItemStack AIR = new ItemStack(Material.AIR);
+    private final Version version = Version.current;
+    private final boolean letterSupported = version.hasLetter();
 
     public Crafting() {
         Plugin plugin = StarMail.getPlugin();

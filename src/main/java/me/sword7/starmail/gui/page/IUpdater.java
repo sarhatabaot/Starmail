@@ -16,8 +16,8 @@ import java.util.UUID;
 
 public abstract class IUpdater implements IInsertable {
 
-    private static Map<UUID, UUID> sessionToPID = new HashMap<>();
-    private static ItemStack normalStack = XMaterial.YELLOW_STAINED_GLASS_PANE.parseItem();
+    private static final Map<UUID, UUID> sessionToPID = new HashMap<>();
+    private static final ItemStack normalStack = XMaterial.YELLOW_STAINED_GLASS_PANE.parseItem();
 
     public abstract List<Integer> getAnimationSlots();
 

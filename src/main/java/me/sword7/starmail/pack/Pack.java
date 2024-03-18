@@ -22,11 +22,11 @@ import static me.sword7.starmail.sys.Language.*;
 
 public abstract class Pack {
 
-    private static Sound poofSound = XSound.ITEM_FIRECHARGE_USE.isSupported() ? XSound.ITEM_FIRECHARGE_USE.parseSound() : XSound.ENTITY_GHAST_SHOOT.parseSound();
+    private static final Sound poofSound = XSound.ITEM_FIRECHARGE_USE.isSupported() ? XSound.ITEM_FIRECHARGE_USE.parseSound() : XSound.ENTITY_GHAST_SHOOT.parseSound();
 
-    private static Map<UUID, Pack> iDToPack = new HashMap<>();
-    private static Map<String, Pack> nameToPack = new HashMap<>();
-    private static List<Pack> orderedPacks = new ArrayList<>();
+    private static final Map<UUID, Pack> iDToPack = new HashMap<>();
+    private static final Map<String, Pack> nameToPack = new HashMap<>();
+    private static final List<Pack> orderedPacks = new ArrayList<>();
 
     private static String EMPTY_LORE;
     private static String SEALED_LORE;
@@ -52,8 +52,8 @@ public abstract class Pack {
         }
         packs.clear();
 
-        EMPTY_LORE = ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_EMPTY_PACKAGE.toString();
-        SEALED_LORE = ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_SEALED_PACKAGE.toString();
+        EMPTY_LORE = ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_EMPTY_PACKAGE;
+        SEALED_LORE = ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_SEALED_PACKAGE;
 
         packLores = new ImmutableSet.Builder<String>()
                 .add(EMPTY_LORE)
@@ -61,10 +61,10 @@ public abstract class Pack {
                 .build();
     }
 
-    private PackType type;
-    private String name;
+    private final PackType type;
+    private final String name;
     protected String displayName;
-    private ItemStack baseItemStack;
+    private final ItemStack baseItemStack;
     protected UUID profileID;
     protected String data;
 
@@ -106,14 +106,14 @@ public abstract class Pack {
     public ItemStack getEmptyPack() {
         ItemStack itemStack = baseItemStack.clone();
         ItemMeta meta = itemStack.getItemMeta();
-        meta.setLore(Collections.singletonList(ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_EMPTY_PACKAGE.toString()));
+        meta.setLore(Collections.singletonList(ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_EMPTY_PACKAGE));
         itemStack.setItemMeta(meta);
         return itemStack;
     }
 
     public static ItemMeta seal(ItemMeta meta, UUID trackingNo, ItemStack[] itemStacks) {
         List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_SEALED_PACKAGE.toString());
+        lore.add(ChatColor.GRAY.toString() + ChatColor.ITALIC + LORE_ID_SEALED_PACKAGE);
         lore.add(ChatColor.GRAY + LABEL_TRACKING_NO.toString() + ": ");
         lore.add(ChatColor.GOLD + trackingNo.toString().substring(0, 18));
         lore.add(ChatColor.GOLD + trackingNo.toString().substring(18, 36));
@@ -141,7 +141,7 @@ public abstract class Pack {
     }
 
     public static boolean isPack(ItemStack itemStack) {
-        return (itemStack != null) ? isPack(itemStack.getItemMeta()) : false;
+        return itemStack != null && isPack(itemStack.getItemMeta());
     }
 
     public static boolean isPack(ItemMeta meta) {
@@ -149,7 +149,7 @@ public abstract class Pack {
     }
 
     public static boolean isSealedPack(ItemStack itemStack) {
-        return (itemStack != null) ? isSealedPack(itemStack.getItemMeta()) : false;
+        return itemStack != null && isSealedPack(itemStack.getItemMeta());
     }
 
     public static boolean isSealedPack(ItemMeta meta) {
@@ -157,7 +157,7 @@ public abstract class Pack {
     }
 
     public static boolean isEmptyPack(ItemStack itemStack) {
-        return (itemStack != null) ? isEmptyPack(itemStack.getItemMeta()) : false;
+        return itemStack != null && isEmptyPack(itemStack.getItemMeta());
     }
 
     public static boolean isEmptyPack(ItemMeta meta) {
@@ -222,7 +222,7 @@ public abstract class Pack {
     public abstract void playUnsealSound(Player player);
 
     public enum ContentStatus {
-        EMPTY, FRACTAL, VALID;
+        EMPTY, FRACTAL, VALID
     }
 
 }

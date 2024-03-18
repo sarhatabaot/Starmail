@@ -36,7 +36,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class StarMail extends JavaPlugin {
 
     private static StarMail plugin;
-    private static StarMailAPI starMailAPI = StarMailAPI.getInstance();
+    private static final StarMailAPI starMailAPI = StarMailAPI.getInstance();
 
     @Override
     public void onEnable() {

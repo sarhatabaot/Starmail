@@ -16,12 +16,12 @@ import java.util.UUID;
 
 public class Crate extends Pack {
 
-    private static Sound openSound = XSound.BLOCK_BARREL_OPEN.isSupported() ? XSound.BLOCK_BARREL_OPEN.parseSound() : XSound.BLOCK_CHEST_OPEN.parseSound();
-    private static Sound closeSound = XSound.BLOCK_BARREL_CLOSE.isSupported() ? XSound.BLOCK_BARREL_CLOSE.parseSound() : XSound.BLOCK_CHEST_CLOSE.parseSound();
+    private static final Sound openSound = XSound.BLOCK_BARREL_OPEN.isSupported() ? XSound.BLOCK_BARREL_OPEN.parseSound() : XSound.BLOCK_CHEST_OPEN.parseSound();
+    private static final Sound closeSound = XSound.BLOCK_BARREL_CLOSE.isSupported() ? XSound.BLOCK_BARREL_CLOSE.parseSound() : XSound.BLOCK_CHEST_CLOSE.parseSound();
 
     private XMaterial xPlanks;
-    private XMaterial borderWood;
-    private XMaterial wood;
+    private final XMaterial borderWood;
+    private final XMaterial wood;
     private UUID profileIDSeal;
     private String dataSeal;
     private boolean doStraps = false;
@@ -99,7 +99,7 @@ public class Crate extends Pack {
         return new ItemStack(Material.STRING);
     }
 
-    private static Sound unseal = XSound.ENTITY_SHEEP_SHEAR.parseSound();
+    private static final Sound unseal = XSound.ENTITY_SHEEP_SHEAR.parseSound();
 
     @Override
     public void playSealSound(Player player) {

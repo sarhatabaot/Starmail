@@ -80,7 +80,7 @@ public class CommandSendTo implements CommandExecutor {
         }
     }
 
-    private Material writtenBook = XMaterial.WRITTEN_BOOK.parseMaterial();
+    private final Material writtenBook = XMaterial.WRITTEN_BOOK.parseMaterial();
 
     private boolean isMail(ItemStack stack) {
         ItemMeta meta = stack.getItemMeta();

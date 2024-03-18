@@ -12,9 +12,9 @@ import java.util.UUID;
 
 public class User implements ICopyable<User> {
 
-    private UUID ID;
+    private final UUID ID;
     private String name;
-    private Notifications notifications;
+    private final Notifications notifications;
     private Timestamp lastUsed;
     private int placedBoxes = 0;
     private Integer maxBoxes;

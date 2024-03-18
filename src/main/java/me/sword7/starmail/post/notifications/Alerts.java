@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class Alerts {
 
-    private static Map<UUID, Alert> playerToAlert = new HashMap<>();
+    private static final Map<UUID, Alert> playerToAlert = new HashMap<>();
 
     protected static void unRegisterAlert(Player player) {
         playerToAlert.remove(player.getUniqueId());

@@ -12,9 +12,9 @@ import org.bukkit.entity.Player;
 public class BoxData extends SessionData {
 
     private Box box;
-    private User user;
+    private final User user;
     private Location location;
-    private boolean virtual;
+    private final boolean virtual;
 
     public BoxData(Player player, Box box, User user, Location location) {
         super(PageType.MAIL_HOME.getPage(), player);
@@ -46,7 +46,7 @@ public class BoxData extends SessionData {
 
     @Override
     public String getEffectiveTitle() {
-        return titleBase + Language.LABEL_MAILBOX + ChatColor.DARK_GRAY + ChatColor.ITALIC.toString() + " - " + user.getName();
+        return titleBase + Language.LABEL_MAILBOX + ChatColor.DARK_GRAY + ChatColor.ITALIC + " - " + user.getName();
     }
 
     @Override

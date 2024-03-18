@@ -43,9 +43,9 @@ public class MenuUtil {
         return Bukkit.createInventory(null, rows * 9, title);
     }
 
-    private static Sound clickSound = XSound.BLOCK_STONE_BUTTON_CLICK_ON.isSupported() ? XSound.BLOCK_STONE_BUTTON_CLICK_ON.parseSound() : XSound.UI_BUTTON_CLICK.parseSound();
-    private static Sound pickUpSound = XSound.ENTITY_ITEM_PICKUP.parseSound();
-    private static Sound errorSound = XSound.ENTITY_BLAZE_HURT.parseSound();
+    private static final Sound clickSound = XSound.BLOCK_STONE_BUTTON_CLICK_ON.isSupported() ? XSound.BLOCK_STONE_BUTTON_CLICK_ON.parseSound() : XSound.UI_BUTTON_CLICK.parseSound();
+    private static final Sound pickUpSound = XSound.ENTITY_ITEM_PICKUP.parseSound();
+    private static final Sound errorSound = XSound.ENTITY_BLAZE_HURT.parseSound();
 
     public static void playClickSound(Player player) {
         player.playSound(player.getLocation(), clickSound, 0.5f, 1.2f);

@@ -20,8 +20,8 @@ public class Letter {
     public static Material WRITABLE_BOOK = XMaterial.WRITABLE_BOOK.parseMaterial();
 
     public static ImmutableSet<Material> bookMats = new ImmutableSet.Builder<Material>().add(WRITTEN_BOOK).add(WRITABLE_BOOK).build();
-    private static Map<String, Letter> nameToLetter = new HashMap<>();
-    private static List<Letter> orderedLetters = new ArrayList<>();
+    private static final Map<String, Letter> nameToLetter = new HashMap<>();
+    private static final List<Letter> orderedLetters = new ArrayList<>();
 
     public static void init() {
         List<Letter> letters = new ArrayList<>();
@@ -38,11 +38,11 @@ public class Letter {
         letters.clear();
     }
 
-    private LetterType type;
-    private String name;
-    private int modelData;
+    private final LetterType type;
+    private final String name;
+    private final int modelData;
     private XMaterial xDye;
-    private ItemStack quillStack;
+    private final ItemStack quillStack;
 
     public Letter(LetterType type, MailColor mailColor, int modelData) {
         this.type = type;
@@ -64,7 +64,7 @@ public class Letter {
         BookMeta meta = (BookMeta) letter.getItemMeta();
         meta.setDisplayName(ChatColor.WHITE + name);
         if (Version.current.isModelDataSupported()) meta.setCustomModelData(model);
-        meta.setPages(Arrays.asList(""));
+        meta.setPages(Collections.singletonList(""));
         letter.setItemMeta(meta);
         return letter;
     }

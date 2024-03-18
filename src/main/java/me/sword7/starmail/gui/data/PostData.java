@@ -21,14 +21,14 @@ import java.util.Map;
 
 public class PostData extends TipData implements IUpdateable {
 
-    private Postbox postbox;
+    private final Postbox postbox;
     private User to;
     private boolean validMails = false;
     private String input;
     private String suggestedCompletion = "";
     private keyState state;
     private ItemStack[] mails = new ItemStack[3];
-    private Map<Integer, PostboxSendAnimation> slotToAnimation = new HashMap<>();
+    private final Map<Integer, PostboxSendAnimation> slotToAnimation = new HashMap<>();
 
     public void registerAnimation(int slot, PostboxSendAnimation animation) {
         slotToAnimation.put(slot, animation);
@@ -167,6 +167,7 @@ public class PostData extends TipData implements IUpdateable {
                     for (int i = 0; i < input.length(); i++) {
                         if (input.charAt(i) != playerName.charAt(i)) {
                             acceptCompletion = false;
+                            break;
                         }
                     }
                 } else {

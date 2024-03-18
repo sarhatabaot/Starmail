@@ -9,8 +9,8 @@ public enum Symbol {
     RIGHT("→", "➡"),
     ;
 
-    private String symbol;
-    private String legacy;
+    private final String symbol;
+    private final String legacy;
 
     Symbol(String symbol, String legacy) {
         this.symbol = symbol;

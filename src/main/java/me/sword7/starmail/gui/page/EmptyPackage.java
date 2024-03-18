@@ -125,8 +125,8 @@ public class EmptyPackage implements IInsertable {
         }
     }
 
-    private List<Integer> insertableList = new ArrayList<>();
-    private Set<Integer> insertableSet = new HashSet<>();
+    private final List<Integer> insertableList = new ArrayList<>();
+    private final Set<Integer> insertableSet = new HashSet<>();
 
     private void buildInsertables() {
         for (int i = 10; i < 35; i++) {

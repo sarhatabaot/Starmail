@@ -14,13 +14,13 @@ import org.bukkit.inventory.ItemStack;
 
 public class Gift extends Pack {
 
-    private static Sound openSound = XSound.BLOCK_BARREL_OPEN.isSupported() ? XSound.BLOCK_BARREL_OPEN.parseSound() : XSound.BLOCK_CHEST_OPEN.parseSound();
-    private static Sound closeSound = XSound.BLOCK_BARREL_CLOSE.isSupported() ? XSound.BLOCK_BARREL_CLOSE.parseSound() : XSound.BLOCK_CHEST_CLOSE.parseSound();
+    private static final Sound openSound = XSound.BLOCK_BARREL_OPEN.isSupported() ? XSound.BLOCK_BARREL_OPEN.parseSound() : XSound.BLOCK_CHEST_OPEN.parseSound();
+    private static final Sound closeSound = XSound.BLOCK_BARREL_CLOSE.isSupported() ? XSound.BLOCK_BARREL_CLOSE.parseSound() : XSound.BLOCK_CHEST_CLOSE.parseSound();
 
     private XMaterial xDye;
-    private XMaterial paper;
-    private XMaterial ribbon;
-    private ItemStack sealBaseStack;
+    private final XMaterial paper;
+    private final XMaterial ribbon;
+    private final ItemStack sealBaseStack;
 
     public Gift(PackType type, MailColor mailColor, XMaterial ribbon, String profileID, String data) {
         super(type, type.toString(), Language.LABEL_DYED_GIFT.fromColor(mailColor.getLanguage()), profileID, data);
@@ -83,9 +83,9 @@ public class Gift extends Pack {
         }
     }
 
-    private static Sound seal = XSound.ITEM_BOOK_PAGE_TURN.isSupported() ? XSound.ITEM_BOOK_PAGE_TURN.parseSound() : null;
+    private static final Sound seal = XSound.ITEM_BOOK_PAGE_TURN.isSupported() ? XSound.ITEM_BOOK_PAGE_TURN.parseSound() : null;
 
-    private static Sound unseal = XSound.ENTITY_SHEEP_SHEAR.parseSound();
+    private static final Sound unseal = XSound.ENTITY_SHEEP_SHEAR.parseSound();
 
     @Override
     public void playUnsealSound(Player player) {

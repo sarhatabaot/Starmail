@@ -44,7 +44,7 @@ public class Icons {
         return icon;
     }
 
-    private static SimpleDateFormat dataFormat = new SimpleDateFormat(MISC_DATE.toString());
+    private static final SimpleDateFormat dataFormat = new SimpleDateFormat(MISC_DATE.toString());
 
     public static ItemStack createMail(Mail mail) {
         ItemStack icon = mail.getItemStack().clone();

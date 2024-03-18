@@ -32,9 +32,9 @@ import java.util.Set;
 
 public class ItemListener implements Listener {
 
-    private static boolean hasLetter = Version.current.hasLetter();
-    private static boolean canLectern = XMaterial.LECTERN.isSupported();
-    private static Material lectern = XMaterial.LECTERN.parseMaterial();
+    private static final boolean hasLetter = Version.current.hasLetter();
+    private static final boolean canLectern = XMaterial.LECTERN.isSupported();
+    private static final Material lectern = XMaterial.LECTERN.parseMaterial();
 
     public ItemListener() {
         Plugin plugin = StarMail.getPlugin();
@@ -80,7 +80,7 @@ public class ItemListener implements Listener {
             cancelDrop(e);
             Location location = e.getBlock().getLocation();
             PlacedBox placedBox = BoxCache.getPlacedBox(location);
-            boolean global = placedBox != null ? placedBox.isGlobal() : false;
+            boolean global = placedBox != null && placedBox.isGlobal();
             ItemStack boxStack = global ? box.getGlobalItemStack() : box.getItemStack();
             dropItem(e.getBlock(), boxStack);
             BoxCache.unRegister(e.getBlock().getLocation());
@@ -108,7 +108,7 @@ public class ItemListener implements Listener {
         }
     }
 
-    private Set<Location> pushedBlockLocations = new HashSet<>();
+    private final Set<Location> pushedBlockLocations = new HashSet<>();
 
     @EventHandler
     public void onFromTo(BlockFromToEvent e) {
@@ -160,7 +160,7 @@ public class ItemListener implements Listener {
             Box box = Box.getBox(itemStack);
             if (box != null) {
                 PlacedBox placedBox = BoxCache.getPlacedBox(location);
-                boolean global = placedBox != null ? placedBox.isGlobal() : false;
+                boolean global = placedBox != null && placedBox.isGlobal();
                 ItemStack boxStack = global ? box.getGlobalItemStack() : box.getItemStack();
                 BoxCache.unRegister(e.getLocation().getBlock().getLocation());
                 e.getEntity().setItemStack(boxStack);
@@ -170,7 +170,6 @@ public class ItemListener implements Listener {
             if (postbox != null) {
                 PostboxCache.unRegister(e.getLocation().getBlock().getLocation());
                 e.getEntity().setItemStack(postbox.getItemStack());
-                return;
             }
         }
     }
@@ -203,7 +202,7 @@ public class ItemListener implements Listener {
             if (box != null) {
                 Location location = block.getLocation();
                 PlacedBox placedBox = BoxCache.getPlacedBox(location);
-                boolean global = placedBox != null ? placedBox.isGlobal() : false;
+                boolean global = placedBox != null && placedBox.isGlobal();
                 ItemStack boxStack = global ? box.getGlobalItemStack() : box.getItemStack();
                 dropItem(block, boxStack);
                 BoxCache.unRegister(location);

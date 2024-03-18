@@ -18,12 +18,12 @@ import java.util.Map;
 
 public class PostboxCache implements Listener {
 
-    private static List<LocationParts> unloadedLocations = new ArrayList<>();
-    private static Map<LocationParts, Postbox> postBoxLocations = new HashMap<>();
-    private static boolean usingDynmap = PluginBase.isUsingDynmap();
-    private static Dynmap dynmap = PluginBase.getDynmap();
+    private static final List<LocationParts> unloadedLocations = new ArrayList<>();
+    private static final Map<LocationParts, Postbox> postBoxLocations = new HashMap<>();
+    private static final boolean usingDynmap = PluginBase.isUsingDynmap();
+    private static final Dynmap dynmap = PluginBase.getDynmap();
 
-    private static PostboxFlatFile postboxFlatFile = new PostboxFlatFile();
+    private static final PostboxFlatFile postboxFlatFile = new PostboxFlatFile();
 
     public PostboxCache() {
         Plugin plugin = StarMail.getPlugin();

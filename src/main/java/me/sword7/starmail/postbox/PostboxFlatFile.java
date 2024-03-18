@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class PostboxFlatFile {
 
-    private static File file = new File("plugins/StarMail/Data", "postboxes.yml");
+    private static final File file = new File("plugins/StarMail/Data", "postboxes.yml");
 
     public void store(Map<LocationParts, Postbox> locations) {
         FileConfiguration config = new YamlConfiguration();

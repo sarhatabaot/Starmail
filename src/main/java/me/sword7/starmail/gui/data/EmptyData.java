@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 public class EmptyData extends PackData implements IUpdateable {
 
     private boolean isSealing = false;
-    private ItemStack packItem;
+    private final ItemStack packItem;
     private ItemStack[] itemStacks = new ItemStack[21];
     private Pack.ContentStatus contentStatus = Pack.ContentStatus.EMPTY;
 

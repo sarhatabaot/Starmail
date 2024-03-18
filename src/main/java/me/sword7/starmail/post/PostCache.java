@@ -20,11 +20,11 @@ import java.util.UUID;
 
 public class PostCache implements Listener {
 
-    private static Map<UUID, Cooldown> playerToCooldown = new HashMap<>();
-    private static Map<UUID, List<Mail>> playerToMail = new HashMap<>();
-    private static Map<UUID, List<Mail>> unsavedMail = new HashMap<>();
+    private static final Map<UUID, Cooldown> playerToCooldown = new HashMap<>();
+    private static final Map<UUID, List<Mail>> playerToMail = new HashMap<>();
+    private static final Map<UUID, List<Mail>> unsavedMail = new HashMap<>();
 
-    private static PostFlatFile postFlatFile = new PostFlatFile();
+    private static final PostFlatFile postFlatFile = new PostFlatFile();
 
     public PostCache() {
         Plugin plugin = StarMail.getPlugin();

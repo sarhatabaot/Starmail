@@ -14,8 +14,8 @@ import java.time.Instant;
 public class Mail {
 
     private ItemStack itemStack;
-    private Timestamp timestamp;
-    private String from;
+    private final Timestamp timestamp;
+    private final String from;
 
     public Mail(ItemStack itemStack, String from) {
         this.itemStack = itemStack;
@@ -45,7 +45,7 @@ public class Mail {
         return timestamp;
     }
 
-    private static Material writtenBook = XMaterial.WRITTEN_BOOK.parseMaterial();
+    private static final Material writtenBook = XMaterial.WRITTEN_BOOK.parseMaterial();
 
     public static boolean isMail(Player player, ItemStack itemStack) {
         if(itemStack != null){

@@ -74,7 +74,7 @@ public class WarehouseItem extends IUpdater {
         }
     }
 
-    private List<Integer> insertable = Collections.singletonList(12);
+    private final List<Integer> insertable = Collections.singletonList(12);
 
     @Override
     public boolean isInsertable(int slot) {
@@ -86,7 +86,7 @@ public class WarehouseItem extends IUpdater {
         return insertable;
     }
 
-    private List<Integer> animationSlots = new ImmutableList.Builder<Integer>()
+    private final List<Integer> animationSlots = new ImmutableList.Builder<Integer>()
             .add(1).add(2).add(3).add(5).add(6).add(7)
             .add(9).add(17)
             .add(18).add(19).add(20).add(21).add(23).add(24).add(25).add(26)

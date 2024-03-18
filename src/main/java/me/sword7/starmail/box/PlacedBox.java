@@ -6,9 +6,9 @@ import java.util.UUID;
 
 public class PlacedBox implements ICopyable<PlacedBox> {
 
-    private Box box;
+    private final Box box;
     private UUID ownerId;
-    private boolean global;
+    private final boolean global;
 
     public PlacedBox(Box box, UUID ownerId) {
         this.box = box;

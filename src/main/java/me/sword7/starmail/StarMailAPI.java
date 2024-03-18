@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class StarMailAPI {
 
-    private static StarMailAPI api = new StarMailAPI();
+    private static final StarMailAPI api = new StarMailAPI();
 
     private StarMailAPI() {
     }

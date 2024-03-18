@@ -9,9 +9,9 @@ import static me.sword7.starmail.sys.Language.INFO_RECEIVE_MULTI;
 
 public class Alert extends BulkTask {
 
-    private Player player;
-    private Notifications notifications;
-    private String firstSender;
+    private final Player player;
+    private final Notifications notifications;
+    private final String firstSender;
     private int items = 1;
 
     public Alert(Player player, String firstSender, Notifications notifications) {

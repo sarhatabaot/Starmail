@@ -9,10 +9,10 @@ import java.util.UUID;
 
 public class TrackingCache {
 
-    private static Map<UUID, TrackedItem> packageToContents = new HashMap<>();
-    private static Map<UUID, TrackedItem> unsavedPackages = new HashMap<>();
+    private static final Map<UUID, TrackedItem> packageToContents = new HashMap<>();
+    private static final Map<UUID, TrackedItem> unsavedPackages = new HashMap<>();
 
-    private static TrackingFlatFile trackingFlatFile = new TrackingFlatFile();
+    private static final TrackingFlatFile trackingFlatFile = new TrackingFlatFile();
 
     public TrackingCache() {
         packageToContents.putAll(trackingFlatFile.fetch());

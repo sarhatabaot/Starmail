@@ -27,7 +27,7 @@ public class TrackingRunnable extends BukkitRunnable {
     public static void start() {
         instance = new TrackingRunnable();
         new TrackingListener();
-        instance.runTaskTimer(StarMail.getPlugin(), 20 * 60 * 1, 20 * 60 * 1);
+        instance.runTaskTimer(StarMail.getPlugin(), 20 * 60, 20 * 60);
     }
 
     public static void shutdown() {

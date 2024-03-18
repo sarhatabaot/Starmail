@@ -15,9 +15,9 @@ import org.bukkit.inventory.ItemStack;
 
 public class FBoxData extends TipData implements IUpdateable {
 
-    private Box box;
-    private User owner;
-    private Location location;
+    private final Box box;
+    private final User owner;
+    private final Location location;
     private ItemStack mail;
     private boolean validMail = false;
     private FBoxSendAnimation animation;
@@ -37,7 +37,7 @@ public class FBoxData extends TipData implements IUpdateable {
 
 
     public void checkValid() {
-        validMail = mail != null && Mail.isMail(player, mail);
+        validMail = Mail.isMail(player, mail);
     }
 
     public boolean isValidMail() {
@@ -85,7 +85,7 @@ public class FBoxData extends TipData implements IUpdateable {
     @Override
     public String getEffectiveTitle() {
         if (!doTip) {
-            return titleBase + Language.LABEL_MAILBOX + ChatColor.DARK_GRAY + ChatColor.ITALIC.toString() + " - " + owner.getName();
+            return titleBase + Language.LABEL_MAILBOX + ChatColor.DARK_GRAY + ChatColor.ITALIC + " - " + owner.getName();
         } else {
             return titleBase + Language.LABEL_MAILBOX + " " + tip;
         }

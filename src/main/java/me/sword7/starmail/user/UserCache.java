@@ -25,13 +25,13 @@ public class UserCache implements Listener {
 
     private static final int MAX_RECENT_SIZE = 50;
     private static int recentSize = 0;
-    private static LinkedList<UUID> recent = new LinkedList<>();
+    private static final LinkedList<UUID> recent = new LinkedList<>();
 
-    private static Map<UUID, User> idToUser = new HashMap<>();
-    private static Map<String, User> nameToUser = new HashMap<>();
+    private static final Map<UUID, User> idToUser = new HashMap<>();
+    private static final Map<String, User> nameToUser = new HashMap<>();
 
-    private static UserFlatFile userFlatFile = new UserFlatFile();
-    private static Saves<UUID, User> saves = new Saves<>(userFlatFile);
+    private static final UserFlatFile userFlatFile = new UserFlatFile();
+    private static final Saves<UUID, User> saves = new Saves<>(userFlatFile);
     private static final Map<String, UUID> savesLookup = new HashMap<>();
 
     public UserCache() {

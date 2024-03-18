@@ -5,7 +5,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class Cooldown extends BukkitRunnable {
 
-    private Runnable r;
+    private final Runnable r;
     private int countdown;
 
     public Cooldown(Runnable r, int seconds) {

@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class TipData extends SessionData {
 
-    private static String SUCCESS_SEND = ChatColor.GREEN.toString() + ChatColor.BOLD + Language.SUCCESS_SENT_SHORT;
+    private static final String SUCCESS_SEND = ChatColor.GREEN.toString() + ChatColor.BOLD + Language.SUCCESS_SENT_SHORT;
 
     public static String getSuccessSend() {
         return SUCCESS_SEND;

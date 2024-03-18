@@ -78,7 +78,7 @@ public class MailUtil {
         }
     }
 
-    private static Set<Material> interactableMaterial = buildInteractableMaterials();
+    private static final Set<Material> interactableMaterial = buildInteractableMaterials();
 
     private static Set<Material> buildInteractableMaterials() {
         Set<XMaterial> xMaterials = new HashSet<>();

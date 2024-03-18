@@ -65,7 +65,7 @@ public class MailOverview implements IPageContents {
         return menu;
     }
 
-    private Sound lavaSound = XSound.BLOCK_LAVA_EXTINGUISH.isSupported() ? XSound.BLOCK_LAVA_EXTINGUISH.parseSound() : XSound.BLOCK_LAVA_POP.parseSound();
+    private final Sound lavaSound = XSound.BLOCK_LAVA_EXTINGUISH.isSupported() ? XSound.BLOCK_LAVA_EXTINGUISH.parseSound() : XSound.BLOCK_LAVA_POP.parseSound();
 
     @Override
     public void processClick(Player player, Inventory menu, SessionData sessionData, int slot, ClickType clickType) {
@@ -121,6 +121,6 @@ public class MailOverview implements IPageContents {
     }
 
 
-    private ItemStack AIR = new ItemStack(Material.AIR);
+    private final ItemStack AIR = new ItemStack(Material.AIR);
 
 }

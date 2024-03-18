@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class BoxFlatFile extends SingleFileStorage<LocationParts, PlacedBox> {
 
-    private static File file = new File("plugins/StarMail/Data", "boxes.yml");
+    private static final File file = new File("plugins/StarMail/Data", "boxes.yml");
 
     @Override
     protected void store(final Map<LocationParts, PlacedBox> boxes) {

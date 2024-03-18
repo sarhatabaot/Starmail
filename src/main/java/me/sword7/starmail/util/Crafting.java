@@ -247,11 +247,13 @@ public class Crafting implements Listener {
                     ) : new ShapedRecipe(chest.getEmptyPack());
                     packRecipe.shape("---", "w*w", "www");
                     if (version.hasExtendedEnums()) {
-                        packRecipe.setIngredient('-', planks.parseSlabMaterial());
+                        //todo packRecipe.setIngredient('-', planks.parseSlabMaterial());
+                        // packRecipe.setIngredient('-', planks.parseSlabMaterial());
                         packRecipe.setIngredient('w', planks.parseMaterial());
                         packRecipe.setIngredient('*', wool.parseMaterial());
                     } else {
-                        packRecipe.setIngredient('-', new MaterialData(planks.parseSlabMaterial(), planks.getData()));
+                        //todo packRecipe.setIngredient('-', new MaterialData(planks.parseSlabMaterial(), planks.getData()));
+                        //packRecipe.setIngredient('-', new MaterialData(planks.parseSlabMaterial(), planks.getData()));
                         packRecipe.setIngredient('w', new MaterialData(XMaterial.OAK_PLANKS.parseMaterial(), planks.getData()));
                         packRecipe.setIngredient('*', new MaterialData(wool.parseMaterial(), wool.getData()));
                     }

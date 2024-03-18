@@ -83,18 +83,19 @@ public class Head {
 
 
         SkullMeta skullMeta = (SkullMeta) head.getItemMeta();
-        GameProfile profile = new GameProfile(playerID, playerName);
+        //        GameProfile profile = new GameProfile(playerID, playerName);
         if (currentValue >= 117) {
             skullMeta.setOwningPlayer(Bukkit.getServer().getOfflinePlayer(playerID));
-        } else {
-            try {
-                Field profileField = skullMeta.getClass().getDeclaredField("profile");
-                profileField.setAccessible(true);
-                profileField.set(skullMeta, profile);
-            } catch (IllegalArgumentException | SecurityException | NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
         }
+        //        else {
+        //            try {
+        //                Field profileField = skullMeta.getClass().getDeclaredField("profile");
+        //                profileField.setAccessible(true);
+        //                profileField.set(skullMeta, profile);
+        //            } catch (IllegalArgumentException | SecurityException | NoSuchFieldException | IllegalAccessException e) {
+        //                e.printStackTrace();
+        //            }
+        //        }
 
         head.setItemMeta(skullMeta);
         return head;

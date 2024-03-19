@@ -19,8 +19,8 @@ import static me.sword7.starmail.sys.Language.*;
 
 public class MailNotifications implements IPageContents {
 
-    public static Material onMaterial = XMaterial.MUSIC_DISC_STAL.parseMaterial();
-    public static Material offMaterial = XMaterial.MUSIC_DISC_11.parseMaterial();
+    public static final Material onMaterial = XMaterial.MUSIC_DISC_STAL.parseMaterial();
+    public static final Material offMaterial = XMaterial.MUSIC_DISC_11.parseMaterial();
 
     @Override
     public Inventory populate(Inventory menu, SessionData sessionData) {

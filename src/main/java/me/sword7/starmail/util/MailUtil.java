@@ -59,12 +59,12 @@ public class MailUtil {
         String[] parts = s.split("_");
         if (parts.length > 0) {
             String word = parts[0];
-            String formatted = (word.charAt(0) + word.substring(1).toLowerCase());
+            StringBuilder formatted = new StringBuilder((word.charAt(0) + word.substring(1).toLowerCase()));
             for (int i = 1; i < parts.length; i++) {
                 word = parts[i];
-                formatted += (" " + word.charAt(0) + word.substring(1).toLowerCase());
+                formatted.append(" ").append(word.charAt(0)).append(word.substring(1).toLowerCase());
             }
-            return formatted;
+            return formatted.toString();
         } else {
             return s;
         }

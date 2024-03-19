@@ -90,9 +90,7 @@ public class User implements ICopyable<User> {
     public void clearPerms() {
         sendCooldown = null;
         maxBoxes = null;
-        Scheduler.runLater(() -> {
-            waitingForPermData = false;
-        }, 10);
+        Scheduler.runLater(() -> waitingForPermData = false, 10);
     }
 
     public Timestamp getLastUsed() {

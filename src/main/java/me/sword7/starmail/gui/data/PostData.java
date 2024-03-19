@@ -44,8 +44,8 @@ public class PostData extends TipData implements IUpdateable {
 
     public boolean noAnimationsOrMail() {
         boolean hasMail = false;
-        for (int i = 0; i < mails.length; i++) {
-            if (mails[i] != null) {
+        for (ItemStack mail : mails) {
+            if (mail != null) {
                 hasMail = true;
                 break;
             }
@@ -124,7 +124,7 @@ public class PostData extends TipData implements IUpdateable {
 
     public void doKey(Key key) {
         if (key == Key.BACK) {
-            if (input.length() > 0) {
+            if (!input.isEmpty()) {
                 input = input.substring(0, input.length() - 1);
             }
         } else if (key == Key.LETTERS) {
@@ -158,7 +158,7 @@ public class PostData extends TipData implements IUpdateable {
     //TODO use user data instead of player
     private void generateSuggestion() {
         suggestedCompletion = "";
-        if (input.length() > 0) {
+        if (!input.isEmpty()) {
             Player player = Bukkit.getPlayer(input);
             if (player != null) {
                 String playerName = player.getName().toUpperCase();

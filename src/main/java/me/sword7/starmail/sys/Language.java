@@ -178,7 +178,7 @@ public enum Language {
         }
     }
 
-    public class MessageSetting {
+    public static class MessageSetting {
 
         private final String label;
         private String message;

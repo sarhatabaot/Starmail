@@ -23,7 +23,7 @@ public class PostFlatFile {
         file.delete();
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
-        if (mailList != null && mailList.size() > 0) {
+        if (mailList != null && !mailList.isEmpty()) {
 
             for (int index = 0; index < mailList.size(); index++) {
                 Mail mail = mailList.get(index);
@@ -59,7 +59,7 @@ public class PostFlatFile {
                     e.printStackTrace();
                 }
             }
-            if (mailList.size() == 0) {
+            if (mailList.isEmpty()) {
                 file.delete();
             } else if (hasExpired) {
                 StorageUtil.save(config, file);

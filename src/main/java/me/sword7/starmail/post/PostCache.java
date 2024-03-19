@@ -36,7 +36,7 @@ public class PostCache implements Listener {
         for (Player player : Bukkit.getOnlinePlayers()) {
             UUID playerID = player.getUniqueId();
             List<Mail> mailList = postFlatFile.fetch(playerID);
-            if (mailList.size() > 0) playerToMail.put(playerID, mailList);
+            if (!mailList.isEmpty()) playerToMail.put(playerID, mailList);
         }
     }
 
@@ -82,9 +82,7 @@ public class PostCache implements Listener {
     public static void send(User sender, UUID targetID, ItemStack itemStack, int coolDuration) {
         UUID senderID = sender.getID();
         if (coolDuration > 0) {
-            Cooldown cooldown = new Cooldown(() -> {
-                playerToCooldown.remove(senderID);
-            }, coolDuration);
+            Cooldown cooldown = new Cooldown(() -> playerToCooldown.remove(senderID), coolDuration);
             playerToCooldown.put(senderID, cooldown);
         }
         send(targetID, new Mail(itemStack, sender.getName()));
@@ -114,7 +112,7 @@ public class PostCache implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         UUID playerID = e.getPlayer().getUniqueId();
         List<Mail> mailList = postFlatFile.fetch(playerID);
-        if (mailList.size() > 0) {
+        if (!mailList.isEmpty()) {
             playerToMail.put(playerID, mailList);
         }
     }

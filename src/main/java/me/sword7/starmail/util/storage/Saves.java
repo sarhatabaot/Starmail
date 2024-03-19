@@ -69,10 +69,8 @@ public class Saves<T, V extends ICopyable<V>> extends BulkTask {
     public V get(T key) {
         if (unsaved.containsKey(key)) {
             return unsaved.get(key);
-        } else if (beingSaved.containsKey(key)) {
-            return beingSaved.get(key);
         } else {
-            return null;
+            return beingSaved.getOrDefault(key, null);
         }
     }
 

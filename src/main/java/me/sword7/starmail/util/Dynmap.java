@@ -8,7 +8,6 @@ import me.sword7.starmail.postbox.Postbox;
 import me.sword7.starmail.sys.config.IntegrationConfig;
 import org.bukkit.plugin.Plugin;
 import org.dynmap.DynmapCommonAPI;
-import org.dynmap.DynmapCommonAPIListener;
 import org.dynmap.markers.Marker;
 import org.dynmap.markers.MarkerAPI;
 import org.dynmap.markers.MarkerIcon;

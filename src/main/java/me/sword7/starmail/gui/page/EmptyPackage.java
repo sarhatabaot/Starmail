@@ -1,6 +1,5 @@
 package me.sword7.starmail.gui.page;
 
-import com.cryptomorin.xseries.XItemStack;
 import com.cryptomorin.xseries.XMaterial;
 import me.sword7.starmail.gui.Icons;
 import me.sword7.starmail.gui.LiveSessions;
@@ -43,8 +42,7 @@ public class EmptyPackage implements IInsertable {
 
         int index = 10;
         for (int i = 0; i < 21; i++) {
-            int mailIndex = i;
-            ItemStack itemStack = (mailIndex < contents.length) ? contents[mailIndex] : Icons.AIR;
+            ItemStack itemStack = (i < contents.length) ? contents[i] : Icons.AIR;
             if (itemStack == null) {
                 itemStack = Icons.AIR;
             }

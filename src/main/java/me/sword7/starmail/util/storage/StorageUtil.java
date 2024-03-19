@@ -74,11 +74,11 @@ public class StorageUtil {
         try {
             String[] parts = string.split("_");
             int partsLength = parts.length;
-            String worldName = parts[0];
+            StringBuilder worldName = new StringBuilder(parts[0]);
             for (int i = 1; i < partsLength - 3; i++) {
-                worldName += ("_" + parts[i]);
+                worldName.append("_").append(parts[i]);
             }
-            World world = Bukkit.getWorld(worldName);
+            World world = Bukkit.getWorld(worldName.toString());
             int x = Integer.parseInt(parts[partsLength - 3]);
             int y = Integer.parseInt(parts[partsLength - 2]);
             int z = Integer.parseInt(parts[partsLength - 1]);
@@ -93,14 +93,14 @@ public class StorageUtil {
         try {
             String[] parts = string.split("_");
             int partsLength = parts.length;
-            String worldName = parts[0];
+            StringBuilder worldName = new StringBuilder(parts[0]);
             for (int i = 1; i < partsLength - 3; i++) {
-                worldName += ("_" + parts[i]);
+                worldName.append("_").append(parts[i]);
             }
             int x = Integer.parseInt(parts[partsLength - 3]);
             int y = Integer.parseInt(parts[partsLength - 2]);
             int z = Integer.parseInt(parts[partsLength - 1]);
-            return new LocationParts(worldName, x, y, z);
+            return new LocationParts(worldName.toString(), x, y, z);
         } catch (Exception e) {
             return null;
         }

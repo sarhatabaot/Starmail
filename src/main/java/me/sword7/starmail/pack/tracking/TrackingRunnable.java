@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class TrackingRunnable extends BukkitRunnable {
 
-    protected static List<UUID> sealedItems = new ArrayList<>();
+    protected static final List<UUID> sealedItems = new ArrayList<>();
 
     private static TrackingRunnable instance;
 

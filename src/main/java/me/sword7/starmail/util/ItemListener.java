@@ -140,9 +140,7 @@ public class ItemListener implements Listener {
             if (pack != null || box != null || postbox != null) {
                 Location location = block.getLocation();
                 pushedBlockLocations.add(location);
-                Bukkit.getScheduler().runTaskLater(StarMail.getPlugin(), () -> {
-                    pushedBlockLocations.remove(location);
-                }, 2);
+                Bukkit.getScheduler().runTaskLater(StarMail.getPlugin(), () -> pushedBlockLocations.remove(location), 2);
             }
         }
     }

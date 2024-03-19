@@ -37,9 +37,8 @@ public class WarehouseFlatFile {
         Map<String, WarehouseEntry> entries = new HashMap<>();
         for (String name : config.getRoot().getKeys(false)) {
             try {
-                String key = name;
-                ItemStack itemStack = config.getItemStack(key + ".itemstack");
-                String from = config.getString(key + ".from");
+                ItemStack itemStack = config.getItemStack(name + ".itemstack");
+                String from = config.getString(name + ".from");
                 entries.put(name, new WarehouseEntry(itemStack, from));
             } catch (Exception e) {
                 e.printStackTrace();

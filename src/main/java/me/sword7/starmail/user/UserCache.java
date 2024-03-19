@@ -42,12 +42,9 @@ public class UserCache implements Listener {
 
     private void onEnable() {
 
-        saves.setOnSaveFinalized(() -> {
-            savesLookup.clear();
-        });
+        saves.setOnSaveFinalized(savesLookup::clear);
 
-        Set<UUID> toLoad = new HashSet<>();
-        toLoad.addAll(BoxCache.getPlacedBoxUsers());
+        Set<UUID> toLoad = new HashSet<>(BoxCache.getPlacedBoxUsers());
         for (Player player : Bukkit.getOnlinePlayers()) {
             toLoad.add(player.getUniqueId());
         }
@@ -119,7 +116,7 @@ public class UserCache implements Listener {
     private static void purgeCache() {
         if (recentSize > MAX_RECENT_SIZE) {
             for (int i = 0; i < 9; i++) {
-                if (recent.size() > 0) {
+                if (!recent.isEmpty()) {
                     UUID userID = recent.poll();
                     recentSize--;
                     User user = idToUser.get(userID);
@@ -201,9 +198,7 @@ public class UserCache implements Listener {
                     if (mailItems > 0) {
                         int delayTicks = PluginConfig.getOnJoinDelayTicks();
                         if (delayTicks > 0) {
-                            Scheduler.runLater(() -> {
-                                player.sendMessage(INFO_MAIL.fromAmount(mailItems));
-                            }, delayTicks);
+                            Scheduler.runLater(() -> player.sendMessage(INFO_MAIL.fromAmount(mailItems)), delayTicks);
                         } else {
                             player.sendMessage(INFO_MAIL.fromAmount(mailItems));
                         }

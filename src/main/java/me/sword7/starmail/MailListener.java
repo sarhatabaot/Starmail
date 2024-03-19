@@ -52,9 +52,7 @@ public class MailListener implements Listener {
         Plugin plugin = StarMail.getPlugin();
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
-        Scheduler.runLater(() -> {
-            canOpenGui = true;
-        }, 5);
+        Scheduler.runLater(() -> canOpenGui = true, 5);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
@@ -124,13 +122,9 @@ public class MailListener implements Listener {
         if (!noVisualFixPlayers.contains(player.getUniqueId())) {
             if (Version.current.value <= 110 && itemStack != null && itemStack.getType().isBlock()) {
                 if (oneHanded || e.getHand() == EquipmentSlot.HAND) {
-                    Scheduler.runLater(() -> {
-                        player.getInventory().setItem(player.getInventory().getHeldItemSlot(), itemStack);
-                    }, 1);
+                    Scheduler.runLater(() -> player.getInventory().setItem(player.getInventory().getHeldItemSlot(), itemStack), 1);
                 } else {
-                    Scheduler.runLater(() -> {
-                        player.getInventory().setItemInOffHand(itemStack);
-                    }, 1);
+                    Scheduler.runLater(() -> player.getInventory().setItemInOffHand(itemStack), 1);
                 }
             }
         }
@@ -178,9 +172,7 @@ public class MailListener implements Listener {
                 if (Version.current.value > 110) {
                     LiveSessions.launchPostbox(player, postbox);
                 } else {
-                    Scheduler.runLater(() -> {
-                        LiveSessions.launchPostbox(player, postbox);
-                    }, 2);
+                    Scheduler.runLater(() -> LiveSessions.launchPostbox(player, postbox), 2);
                 }
             } else {
                 player.sendMessage(ChatColor.RED + WARN_NOT_PERMITTED_BLOCK.toString());
@@ -263,9 +255,7 @@ public class MailListener implements Listener {
         if (Version.current.value > 110) {
             LiveSessions.launchMail(player, box, location);
         } else {
-            Scheduler.runLater(() -> {
-                LiveSessions.launchMail(player, box, location);
-            }, 2);
+            Scheduler.runLater(() -> LiveSessions.launchMail(player, box, location), 2);
         }
     }
 

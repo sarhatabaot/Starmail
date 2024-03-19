@@ -38,8 +38,7 @@ public class WarehouseContents extends IUpdater {
             ItemStack[] contents = TrackingCache.getContents(trackingNo);
             int index = 10;
             for (int i = 0; i < 21; i++) {
-                int mailIndex = i;
-                ItemStack itemStack = (mailIndex < contents.length) ? contents[mailIndex] : Icons.AIR;
+                ItemStack itemStack = (i < contents.length) ? contents[i] : Icons.AIR;
                 if (itemStack == null) itemStack = Icons.AIR;
                 menu.setItem(index, itemStack);
                 index += ((index + 2) % 9 == 0 ? 3 : 1);

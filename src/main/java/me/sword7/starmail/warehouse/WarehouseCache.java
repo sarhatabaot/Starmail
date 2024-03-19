@@ -36,8 +36,7 @@ public class WarehouseCache {
     }
 
     public static void save() {
-        Map<String, WarehouseEntry> unsaved = new HashMap<>();
-        unsaved.putAll(unsavedData);
+        Map<String, WarehouseEntry> unsaved = new HashMap<>(unsavedData);
         unsavedData.clear();
         Scheduler.runAsync(() -> {
             warehouseFlatFile.store(unsaved);
@@ -114,11 +113,7 @@ public class WarehouseCache {
     }
 
     public static List<String> getEntryTypes() {
-        List<String> types = new ArrayList<>();
-        for (String type : entries.keySet()) {
-            types.add(type);
-        }
-        return types;
+        return new ArrayList<>(entries.keySet());
     }
 
     public static void registerWarehousePack(UUID trackingNo) {

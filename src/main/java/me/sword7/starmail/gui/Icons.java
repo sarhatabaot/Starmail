@@ -19,12 +19,12 @@ import static me.sword7.starmail.sys.Language.*;
 
 public class Icons {
 
-    public static ItemStack AIR = new ItemStack(Material.AIR);
-    public static ItemStack BACKGROUND_ITEM = XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
-    public static ItemStack BACK_BUTTON = createBackButton();
-    public static ItemStack CLOSE = XMaterial.BARRIER.isSupported() ? createIcon(XMaterial.BARRIER.parseMaterial(), ChatColor.RED + ICON_CLOSE.toString()) :
+    public static final ItemStack AIR = new ItemStack(Material.AIR);
+    public static final ItemStack BACKGROUND_ITEM = XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+    public static final ItemStack BACK_BUTTON = createBackButton();
+    public static final ItemStack CLOSE = XMaterial.BARRIER.isSupported() ? createIcon(XMaterial.BARRIER.parseMaterial(), ChatColor.RED + ICON_CLOSE.toString()) :
             ItemUtil.displayName(XMaterial.RED_STAINED_GLASS_PANE.parseItem(), ChatColor.RED+ICON_CLOSE.toString());
-    public static ItemStack WAREHOUSE_ITEM = createIcon(XMaterial.BOOKSHELF.parseMaterial(), ChatColor.WHITE + LABEL_WAREHOUSE.toString());
+    public static final ItemStack WAREHOUSE_ITEM = createIcon(XMaterial.BOOKSHELF.parseMaterial(), ChatColor.WHITE + LABEL_WAREHOUSE.toString());
 
 
     public static ItemStack createSeal(ItemStack itemStack) {

@@ -86,11 +86,10 @@ public class MailOverview implements IPageContents {
         } else if (slot == 9) {
             MenuUtil.playClickSound(player);
             UUID playerID = boxData.getUser().getID();
-            List<Mail> mailList = new ArrayList<>();
-            mailList.addAll(PostCache.hasMail(playerID) ? PostCache.getMail(playerID) : Collections.emptyList());
+            List<Mail> mailList = new ArrayList<>(PostCache.hasMail(playerID) ? PostCache.getMail(playerID) : Collections.emptyList());
             for (Mail mail : mailList) {
                 Map<Integer, ItemStack> overflow = player.getInventory().addItem(mail.getItemStack());
-                if (overflow.size() == 0) {
+                if (overflow.isEmpty()) {
                     PostCache.removeMail(playerID, mail);
                 } else {
                     ItemStack leftover = overflow.get(0);
@@ -101,14 +100,13 @@ public class MailOverview implements IPageContents {
             mailList.clear();
         } else if (slot % 9 != 0 && (slot + 1) % 9 != 0 && slot > 9 && slot < 35) {
             UUID playerID = boxData.getUser().getID();
-            List<Mail> mailList = new ArrayList<>();
-            mailList.addAll(PostCache.hasMail(playerID) ? PostCache.getMail(playerID) : Collections.emptyList());
+            List<Mail> mailList = new ArrayList<>(PostCache.hasMail(playerID) ? PostCache.getMail(playerID) : Collections.emptyList());
             int mailIndex = (7 * ((slot / 9) - 1)) + (slot % 9) - 1;
             if (mailIndex < mailList.size()) {
                 MenuUtil.playPickupSound(player);
                 Mail mail = mailList.get(mailIndex);
                 Map<Integer, ItemStack> overflow = player.getInventory().addItem(mail.getItemStack());
-                if (overflow.size() == 0) {
+                if (overflow.isEmpty()) {
                     PostCache.removeMail(playerID, mail);
                     populate(menu, sessionData);
                 } else {

@@ -16,10 +16,10 @@ import java.util.*;
 
 public class Letter {
 
-    public static Material WRITTEN_BOOK = XMaterial.WRITTEN_BOOK.parseMaterial();
-    public static Material WRITABLE_BOOK = XMaterial.WRITABLE_BOOK.parseMaterial();
+    public static final Material WRITTEN_BOOK = XMaterial.WRITTEN_BOOK.parseMaterial();
+    public static final Material WRITABLE_BOOK = XMaterial.WRITABLE_BOOK.parseMaterial();
 
-    public static ImmutableSet<Material> bookMats = new ImmutableSet.Builder<Material>().add(WRITTEN_BOOK).add(WRITABLE_BOOK).build();
+    public static final ImmutableSet<Material> bookMats = new ImmutableSet.Builder<Material>().add(WRITTEN_BOOK).add(WRITABLE_BOOK).build();
     private static final Map<String, Letter> nameToLetter = new HashMap<>();
     private static final List<Letter> orderedLetters = new ArrayList<>();
 

@@ -95,10 +95,10 @@ public class PostboxMail extends PostboxMenu implements IInsertable {
         }, 1);
     }
 
-    Set<Integer> insertableSet = new ImmutableSet.Builder<Integer>()
+    final Set<Integer> insertableSet = new ImmutableSet.Builder<Integer>()
             .add(30, 31, 32).build();
 
-    List<Integer> insertableList = new ImmutableList.Builder<Integer>()
+    final List<Integer> insertableList = new ImmutableList.Builder<Integer>()
             .add(30, 31, 32).build();
 
     @Override

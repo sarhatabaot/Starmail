@@ -30,7 +30,7 @@ public enum LetterType {
     ;
 
 
-    public static LetterType[] craftable = {
+    public static final LetterType[] craftable = {
             BLACK, RED, GREEN, BROWN, BLUE,
             PURPLE, CYAN, LIGHT_GRAY, GRAY, PINK,
             LIME, YELLOW, LIGHT_BLUE, MAGENTA,

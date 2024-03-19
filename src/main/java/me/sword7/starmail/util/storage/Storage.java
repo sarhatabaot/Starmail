@@ -9,9 +9,7 @@ import java.util.function.Supplier;
 public abstract class Storage<T, V extends ICopyable<V>> {
 
     protected void ioOperationAsync(Runnable r) {
-        Scheduler.runAsync(() -> {
-            ioOperation(r);
-        });
+        Scheduler.runAsync(() -> ioOperation(r));
     }
 
     protected synchronized void ioOperation(Runnable r) {
@@ -29,16 +27,12 @@ public abstract class Storage<T, V extends ICopyable<V>> {
         ioOperationAsync(() -> {
             store(dataCopy);
             dataCopy.clear();
-            Scheduler.run(() -> {
-                callback.onUpdateDone();
-            });
+            Scheduler.run(callback::onUpdateDone);
         });
     }
 
     public void storeSync(Map<T, V> data) {
-        ioOperation(() -> {
-            store(data);
-        });
+        ioOperation(() -> store(data));
     }
 
     protected abstract void store(Map<T, V> data);
@@ -46,9 +40,7 @@ public abstract class Storage<T, V extends ICopyable<V>> {
     protected void specialFetchAsync(Supplier<V> supplier, CallbackQuery<V> callback) {
         ioOperationAsync(() -> {
             final V value = supplier.get();
-            Scheduler.run(() -> {
-                callback.onQueryDone(value);
-            });
+            Scheduler.run(() -> callback.onQueryDone(value));
         });
     }
 

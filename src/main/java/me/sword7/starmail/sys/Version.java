@@ -18,7 +18,7 @@ public enum Version {
     UNKNOWN(0),
     ;
 
-    public static Version current = getVersion();
+    public static final Version current = getVersion();
 
     private static Version getVersion() {
         String versionString = Bukkit.getVersion();

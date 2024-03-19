@@ -6,8 +6,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class UpdateResult {
 
-    public ItemStack[] contents;
-    public Pack.ContentStatus status;
+    public final ItemStack[] contents;
+    public final Pack.ContentStatus status;
 
     public UpdateResult(ItemStack[] contents, Pack.ContentStatus status) {
         this.contents = contents;

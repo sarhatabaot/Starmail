@@ -2,7 +2,6 @@ package me.sword7.starmail.gui.page;
 
 import me.sword7.starmail.gui.MenuUtil;
 import me.sword7.starmail.gui.data.SessionData;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;

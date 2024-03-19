@@ -16,9 +16,7 @@ public abstract class SingleFileStorage<T, V extends ICopyable<V>> extends Stora
     public void fetchAllAsync(final CallbackQuery<Map<T, V>> callback) {
         ioOperationAsync(() -> {
             Map<T, V> map = fetchAll();
-            Scheduler.run(() -> {
-                callback.onQueryDone(map);
-            });
+            Scheduler.run(() -> callback.onQueryDone(map));
         });
     }
 

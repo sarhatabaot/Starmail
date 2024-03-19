@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 
 public class PackData extends SessionData {
 
-    protected int packSlot;
-    protected Pack pack;
+    protected final int packSlot;
+    protected final Pack pack;
 
     public PackData(Player player, Page start, int packSlot, Pack pack) {
         super(start, player);

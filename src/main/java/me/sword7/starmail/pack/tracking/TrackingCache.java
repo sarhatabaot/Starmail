@@ -19,8 +19,7 @@ public class TrackingCache {
     }
 
     public static void save() {
-        Map<UUID, TrackedItem> unsaved = new HashMap<>();
-        unsaved.putAll(unsavedPackages);
+        Map<UUID, TrackedItem> unsaved = new HashMap<>(unsavedPackages);
         unsavedPackages.clear();
         Scheduler.runAsync(() -> {
             trackingFlatFile.store(unsaved);

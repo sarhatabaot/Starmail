@@ -63,10 +63,10 @@ public abstract class Pack {
 
     private final PackType type;
     private final String name;
-    protected String displayName;
+    protected final String displayName;
     private final ItemStack baseItemStack;
-    protected UUID profileID;
-    protected String data;
+    protected final UUID profileID;
+    protected final String data;
 
     public Pack(PackType type, String name, String displayName, String profileID, String data) {
         this.type = type;

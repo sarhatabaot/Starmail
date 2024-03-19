@@ -20,14 +20,14 @@ import java.util.UUID;
 
 public class SessionData {
 
-    protected static String titleBase = ChatColor.DARK_GRAY.toString() + ChatColor.BOLD;
+    protected static final String titleBase = ChatColor.DARK_GRAY.toString() + ChatColor.BOLD;
     private static final XMaterial DEFAULT = XMaterial.BLACK_STAINED_GLASS_PANE;
 
     private boolean clicking = false;
     private UUID cID;
     private boolean updating = false;
     private UUID uID;
-    protected Player player;
+    protected final Player player;
     private final UUID ID = UUID.randomUUID();
     protected Page current;
     private boolean transitioning = false;
@@ -88,9 +88,7 @@ public class SessionData {
                 update();
             } else {
                 registerUpdate(4);
-                Scheduler.runLater(() -> {
-                    update();
-                }, 3);
+                Scheduler.runLater(this::update, 3);
             }
 
         }

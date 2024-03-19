@@ -56,36 +56,42 @@ public class LiveSessions {
 
     public static void launchMail(final Player player, final Box box, final Location location) {
         UUID playerID = player.getUniqueId();
-        if (!busyPlayers.contains(playerID)) {
-            busyPlayers.add(playerID);
-            UserCache.getUser(playerID, (User user) -> {
-                busyPlayers.remove(playerID);
-                if (player.isOnline() && user != null) {
-                    end(player);
-                    player.playSound(location, Box.getOpenSound(), 1f, 1.2f);
-                    SessionData sessionData = new BoxData(player, box, user, location);
-                    playerToData.put(playerID, sessionData);
-                    sessionData.start();
-                }
-            });
+        if (busyPlayers.contains(playerID)) {
+            return;
         }
+
+
+        busyPlayers.add(playerID);
+        UserCache.getUser(playerID, (User user) -> {
+            busyPlayers.remove(playerID);
+            if (player.isOnline() && user != null) {
+                end(player);
+                player.playSound(location, Box.getOpenSound(), 1f, 1.2f);
+                SessionData sessionData = new BoxData(player, box, user, location);
+                playerToData.put(playerID, sessionData);
+                sessionData.start();
+            }
+        });
+
     }
 
     public static void launchVirtualMail(Player player) {
-        UUID playerID = player.getUniqueId();
-        if (!busyPlayers.contains(playerID)) {
-            busyPlayers.add(playerID);
-            UserCache.getUser(playerID, (User user) -> {
-                busyPlayers.remove(playerID);
-                if (player.isOnline() && user != null) {
-                    end(player);
-                    SessionData sessionData = new BoxData(player, user);
-                    playerToData.put(playerID, sessionData);
-                    sessionData.start();
-                }
-            });
+        final UUID playerID = player.getUniqueId();
+        if (busyPlayers.contains(playerID)) {
+            return;
         }
 
+
+        busyPlayers.add(playerID);
+        UserCache.getUser(playerID, (User user) -> {
+            busyPlayers.remove(playerID);
+            if (player.isOnline() && user != null) {
+                end(player);
+                SessionData sessionData = new BoxData(player, user);
+                playerToData.put(playerID, sessionData);
+                sessionData.start();
+            }
+        });
     }
 
     public static void launchVirtualMail(Player player, User user) {

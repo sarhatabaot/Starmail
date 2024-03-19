@@ -29,8 +29,7 @@ public class PackageContents implements IPageContents {
 
         int index = 10;
         for (int i = 0; i < 21; i++) {
-            int mailIndex = i;
-            ItemStack itemStack = (mailIndex < contents.length) ? contents[mailIndex] : Icons.BACKGROUND_ITEM;
+            ItemStack itemStack = (i < contents.length) ? contents[i] : Icons.BACKGROUND_ITEM;
             if (itemStack == null) itemStack = Icons.BACKGROUND_ITEM;
             menu.setItem(index, itemStack);
             index += ((index + 2) % 9 == 0 ? 3 : 1);
@@ -52,7 +51,7 @@ public class PackageContents implements IPageContents {
                 if(itemStack != null){
                     MenuUtil.playPickupSound(player);
                     Map<Integer, ItemStack> overflow = player.getInventory().addItem(itemStack);
-                    if (overflow.size() == 0) {
+                    if (overflow.isEmpty()) {
                         sealedData.getContents()[itemIndex] = null;
                     } else {
                         sealedData.getContents()[itemIndex] = overflow.get(0);

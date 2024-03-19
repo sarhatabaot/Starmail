@@ -14,9 +14,7 @@ public abstract class MultiFileStorage<T, V extends ICopyable<V>> extends Storag
     public void fetchAsync(final T key, final CallbackQuery<V> callback) {
         ioOperationAsync(() -> {
             V value = fetch(key);
-            Scheduler.run(() -> {
-                callback.onQueryDone(value);
-            });
+            Scheduler.run(() -> callback.onQueryDone(value));
         });
     }
 

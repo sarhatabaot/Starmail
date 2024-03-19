@@ -73,9 +73,7 @@ public class UserFlatFile extends MultiFileStorage<UUID, User> {
         FileConfiguration lookupConfig = YamlConfiguration.loadConfiguration(lookupFile);
         try {
             UUID userID = UUID.fromString(lookupConfig.getString(name));
-            specialFetchAsync(() -> {
-                return fetch(userID);
-            }, callback);
+            specialFetchAsync(() -> fetch(userID), callback);
         } catch (Exception e) {
             callback.onQueryDone(null);
         }
@@ -99,8 +97,8 @@ public class UserFlatFile extends MultiFileStorage<UUID, User> {
                         String[] parts = value.split("=");
                         userName = parts[0];
                         String[] notificationParts = parts[1].split("-");
-                        onJoin = Boolean.valueOf(notificationParts[0]);
-                        onReceive = Boolean.valueOf(notificationParts[1]);
+                        onJoin = Boolean.parseBoolean(notificationParts[0]);
+                        onReceive = Boolean.parseBoolean(notificationParts[1]);
                     }
                     User user = new User(userID, userName, new Notifications(onJoin, onReceive));
                     users.put(userID, user);

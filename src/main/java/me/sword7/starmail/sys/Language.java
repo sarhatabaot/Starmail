@@ -161,21 +161,24 @@ public enum Language {
     private static final FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
     public static void load() {
-        if (file.exists()) {
-            try {
-                for (Language message : Language.values()) {
-                    MessageSetting setting = message.getMessageSetting();
-                    if (config.contains(setting.getLabel())) {
-                        setting.setMessage(config.getString(setting.getLabel(), setting.getMessage()));
-                    } else {
-                        config.set(setting.getLabel(), setting.getMessage());
-                    }
-                }
-                StorageUtil.save(config, file);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (!file.exists()) {
+            return;
         }
+
+        try {
+            for (Language message : Language.values()) {
+                MessageSetting setting = message.getMessageSetting();
+                if (config.contains(setting.getLabel())) {
+                    setting.setMessage(config.getString(setting.getLabel(), setting.getMessage()));
+                } else {
+                    config.set(setting.getLabel(), setting.getMessage());
+                }
+            }
+            StorageUtil.save(config, file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static class MessageSetting {
